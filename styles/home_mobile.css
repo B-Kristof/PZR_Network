@@ -1,0 +1,295 @@
+body {
+    height: 100vh;
+    background-color: white;
+    margin: 0;
+    overflow-x: hidden;
+    display: grid;
+    background-color: black;
+}
+
+.top_menu{
+    background-color: rgb(26, 26, 26);
+    width: 100%;
+    display: inline-flex;
+    height: 50px;
+    z-index: 500000;
+    position: fixed;
+    top: 0;
+}
+
+.top_menu .menu-container{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-left: 77px;
+}
+
+.top_menu .language-switch-container{
+    margin: auto 0;
+    margin-left: auto;
+}
+
+/* Animations for text lines (float in) */
+@keyframes floatIn {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.top_menu .menu-container a{
+    display: flex;
+    align-items: center;
+    padding: 10px 10px 10px 10px;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-family: "Verdana", serif;
+    font-size: 12px;
+    position: relative;
+    transition: color 0.3s ease; /* Smooth transition for text color */
+    animation: floatIn 0.25s forwards;
+}
+
+
+
+.top_menu .menu-container a::after {
+    content: ''; /* Creates a pseudo-element to hold the border */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: rgb(226, 9, 9);
+    transition: width 0.15s ease-in-out; /* Controls the speed of the border animation */
+}
+
+.top_menu .menu-container a.active::after,
+.top_menu .menu-container a:hover::after {
+    width: 100%; /* Expands the border to full width on hover/active */
+}
+
+.top_menu .splitter{
+    color: rgb(226, 9, 9);
+    padding: 15px 0px 15px 0px;
+    font-family: "Libre Caslon Text", serif;
+    font-size: 18px;
+}
+
+
+/* VERTICAL FIRST PAGE (HOME) */
+
+
+.vertical_first {
+    background-color: black;
+    color: white;
+    min-height: 100%;
+    display: grid;
+    position: relative;
+    align-content: center
+}
+
+
+.vertical_first .left {
+    margin: auto 0;
+}
+
+@font-face {
+    font-family: 'Garde';
+    src: url('Garde.ttf') format('truetype');
+}
+
+.garde-text {
+    font-family: 'Garde', serif;
+    font-size: 40px;
+    letter-spacing: 2px;
+    text-align: center;
+    margin: 0;
+    animation: floatIn 0.8s forwards; /* animation speed */
+    animation-delay: 0.5s; /* animation delay */
+    opacity: 0;
+}
+
+.first_line {
+    font-family: "Libre Caslon Text", serif;
+    font-size: 20px;
+    letter-spacing: 8px;
+    animation: floatIn 0.9s forwards; /* animation speed */
+    animation-delay: 0.1s; /* animation delay */
+    opacity: 0;
+}
+
+.third_line {
+    font-family: "Libre Caslon Text", serif;
+    font-size: 30px;
+    letter-spacing: 2px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    animation: floatIn 0.8s forwards; /* animation speed */
+    animation-delay: 1s; /* animation delay */
+    opacity: 0;
+}
+
+.vertical_first .welcome {
+    text-align: center;
+    margin-top: auto 0;
+}
+
+.vertical_first .left .contacts{
+    animation: floatIn 0.8s forwards; /* animation speed */
+    animation-delay: 1s; /* animation delay */
+    opacity: 0;
+    margin-top: 25px;
+}
+
+.vertical_first .left .contacts a{
+    margin: 0 18px; /* Add some space between icons */
+}
+
+.vertical_first .left .contacts a img{
+    width: 25px;
+    height: auto;
+    transition: transform 0.1s ease-in-out;
+    z-index: 500;
+}
+
+.vertical_first .left .contacts a img:hover{
+    transform: scale(1.15);
+}
+
+/* Animations for text lines (float in) */
+@keyframes floatIn {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.vertical_first .right {
+    overflow-x: hidden;
+    max-height: 60vh;
+}
+
+/* Fade in animation for logo */
+.fade-in-logo {
+    animation: fadeIn 5s forwards;
+}
+
+.vertical_first .right .fade-in-logo{
+    text-align: center;
+}
+
+.vertical_first .right .fade-in-logo img {
+    width: 80%;
+    height: auto;
+    z-index: 1; 
+}
+
+/* VERTICAL SEVENTH PAGE (CONTACTS)*/
+
+.vertical_seventh {
+    background-color: rgb(146, 12, 12); 
+    color: white;
+    min-height: fit-content;
+    display: grid;
+    justify-items: center
+}
+
+
+.vertical_seventh .contact_container{
+    justify-content: space-between;
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+}
+
+
+
+.vertical_seventh .contact_container h1{
+    min-width: 100%;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.vertical_seventh .contact_container p{
+    min-width: 100%;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.vertical_seventh .contact_container .subscribe-container{
+    display: grid;
+    justify-items: center
+}
+
+.vertical_seventh .contact_container .subscribe-container label{
+    font-size: 10px;
+    width: 100%;
+}
+
+.vertical_seventh .contact_container .subscribe-container input{
+    border-radius: 5px;
+    border: none;
+    margin-top: 10px;
+    height: 20px;
+    width: 100%;
+    font-size: 12px;
+}
+
+.vertical_seventh .contact_container .subscribe-container button{
+    width: fit-content;
+    height: 20px;
+    border-radius: 5px;
+    font-size: 12px;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    margin-left: 3px;
+}
+
+.vertical_seventh .contact_container .subscribe-container .email-form{
+    display: flex;
+    align-items: baseline;
+}
+
+.vertical_seventh .contact_container .subscribe-container button:hover{
+    background-color: rgb(167, 167, 167);
+    color: rgb(146, 12, 12)
+}
+
+.vertical_seventh .contact_container .subscribe-container label{
+    letter-spacing: 1px;
+}
+
+
+.vertical_seventh .footer:before{
+    margin: 0 auto;
+    width: 370px;
+    content:' ';
+    display: block;
+    border: 1px solid white;
+}
+
+.vertical_seventh .footer{
+    text-align: center;
+    padding-top: 35px;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+

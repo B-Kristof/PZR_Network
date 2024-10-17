@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Construction</title>
+</head>
+<body>
+    <div class="construction-container">
+        <div class="content">
+            <img class="construction-icon" src="../images/logo/pzr_shield_glitched.gif" onerror="this.onerror=null; this.src='../images/logo/pzr_shield_transparent.png'" alt="pzr_shield_transparent.png">
+            <h1>This Page is Under Construction</h1>
+            <p>We're working hard to bring you something amazing. Stay tuned!</p>
+            <div class="animation">
+                <div class="crane"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<style>
+    /* Reset some basic styles */
+    body {
+        background-color: black;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Container for the construction page */
+    .construction-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Content styling */
+    .content {
+        text-align: center;
+    }
+
+    .content img{
+        width: 50%;
+        height: auto;
+    }
+
+    /* Image styling */
+    .construction-icon {
+        width: 150px;
+        margin-bottom: 20px;
+    }
+
+    /* Main heading */
+    h1 {
+        font-size: 48px;
+        color: #a0020d;
+        margin-bottom: 20px;
+    }
+
+    /* Subtext styling */
+    p {
+        font-size: 18px;
+        color: #6d030a;
+        margin-bottom: 60px;
+    }
+
+    /* Optional animation - Simple crane lifting action */
+    .animation {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        background: transparent;
+    }
+
+    /* Crane representation */
+    .crane {
+        width: 100px;
+        height: 15px;
+        background-color: #2e0000;
+        animation: lift 2s infinite ease-in-out;
+    }
+
+    /* Keyframes for the lifting animation */
+    @keyframes lift {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+        100% { transform: translateY(0); }
+    }
+
+</style>
+
+</html>

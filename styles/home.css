@@ -1,0 +1,214 @@
+body {
+    background-color: white;
+    margin: 0;
+    overflow-x: hidden;
+    display: grid;
+    background-color: black;
+}
+
+/* VERTICAL FIRST PAGE (HOME) */
+
+
+.vertical_first {
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    position: relative;
+}
+
+
+.vertical_first .left {
+    min-width: 70%;
+    margin: auto 0;
+}
+
+@font-face {
+    font-family: 'Garde';
+    src: url('Garde.ttf') format('truetype');
+}
+
+.garde-text {
+    font-family: 'Garde', serif;
+    font-size: 80px;
+    letter-spacing: 2px;
+    text-align: center;
+    margin: 0;
+    animation: floatIn 0.8s forwards; /* animation speed */
+    animation-delay: 0.5s; /* animation delay */
+    opacity: 0;
+}
+
+.first_line {
+    font-family: "Libre Caslon Text", serif;
+    font-size: 30px;
+    letter-spacing: 8px;
+    animation: floatIn 0.9s forwards; /* animation speed */
+    animation-delay: 0.1s; /* animation delay */
+    opacity: 0;
+}
+
+.third_line {
+    font-family: "Libre Caslon Text", serif;
+    font-size: 30px;
+    letter-spacing: 2px;
+    padding-top: 35px;
+    padding-bottom: 25px;
+    animation: floatIn 0.8s forwards; /* animation speed */
+    animation-delay: 1s; /* animation delay */
+    opacity: 0;
+}
+
+.vertical_first .welcome {
+    text-align: center;
+    margin-top: auto 0;
+}
+
+.vertical_first .left .contacts{
+    animation: floatIn 0.8s forwards; /* animation speed */
+    animation-delay: 1s; /* animation delay */
+    opacity: 0;
+    margin-top: 25px;
+}
+
+.vertical_first .left .contacts a{
+    margin: 0 18px; /* Add some space between icons */
+}
+
+.vertical_first .left .contacts a img{
+    width: fit-content;
+    height: auto;
+    transition: transform 0.1s ease-in-out;
+    z-index: 500;
+}
+
+.vertical_first .left .contacts a img:hover{
+    transform: scale(1.15);
+}
+
+/* Animations for text lines (float in) */
+@keyframes floatIn {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.vertical_first .right {
+    overflow-x: hidden;
+    margin: auto 0;
+}
+
+/* Fade in animation for logo */
+.fade-in-logo {
+    animation: fadeIn 5s forwards;
+}
+
+
+.vertical_first .right .fade-in-logo img {
+    position: absolute;
+    right: -13%;
+    top: 43%;
+    transform: translateY(-50%);
+    width: 47%;
+    height: auto;
+    z-index: 1; 
+}
+
+/* VERTICAL SIXTH PAGE (CONTACTS)*/
+
+.vertical_seventh {
+    background-color: rgb(146, 12, 12); 
+    color: white;
+    min-height: fit-content;
+    display: grid;
+    justify-items: center
+}
+
+
+.vertical_seventh .contact_container{
+    justify-content: space-between;
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+}
+
+
+
+.vertical_seventh .contact_container h1{
+    min-width: 100%;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.vertical_seventh .contact_container p{
+    min-width: 100%;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.vertical_seventh .contact_container .subscribe-container{
+    display: grid;
+    justify-items: center
+}
+
+.vertical_seventh .contact_container .subscribe-container input{
+    border-radius: 5px;
+    border: none;
+    margin-top: 10px;
+    height: 20px;
+    width: 100%;
+    font-size: 12px;
+}
+
+.vertical_seventh .contact_container .subscribe-container button{
+    width: fit-content;
+    height: 20px;
+    border-radius: 5px;
+    font-size: 10px;
+    border: none;
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    margin-left: 3px;
+}
+
+.vertical_seventh .contact_container .subscribe-container .email-form{
+    display: flex;
+    align-items: baseline;
+}
+
+.vertical_seventh .contact_container .subscribe-container button:hover{
+    background-color: rgb(167, 167, 167);
+    color: rgb(146, 12, 12)
+}
+
+.vertical_seventh .contact_container .subscribe-container label{
+    letter-spacing: 1px;
+}
+
+
+.vertical_seventh .footer:before{
+    margin: 0 auto;
+    width: 100vh;
+    content:' ';
+    display: block;
+    border: 1px solid white;
+}
+
+.vertical_seventh .footer{
+    text-align: center;
+    padding-top: 35px;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+

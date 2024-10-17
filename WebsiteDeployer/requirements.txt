@@ -1,0 +1,4 @@
+pick~=2.3.2
+cryptography~=42.0.5
+xxhash~=3.5.0
+paramiko~=3.4.0

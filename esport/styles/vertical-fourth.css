@@ -1,0 +1,229 @@
+/* VERTICAL FOURTH PAGE (MEMBERS) */
+
+#members {
+    min-height: fit-content;
+    margin-top: -7vh; /* Overlap the iframe video above */
+}
+
+#members section{
+    z-index: auto;
+    background-color: black;
+}
+
+.vertical_fourth {
+    min-height: fit-content;
+    position: relative;
+    z-index: 10;
+    color: white;
+}
+
+
+.vertical_fourth .profile-container {
+    position: relative;
+    top: 0;
+    padding-right: 25px;
+    padding-left: 25px;
+    display: grid;
+    align-content: center;
+    min-height: fit-content;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    background-image: url(../images/bg/members_bg.jpg);
+    background-size: cover;
+}
+
+/* Márk Profile */
+
+.vertical_fourth .profile-container .mark_profile {
+    border: solid 1px rgb(70, 70, 70);
+    margin-top: 50px;
+    position: relative;
+    height: 25vh;
+    display: flex;
+    border-radius: 40px;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+
+
+.vertical_fourth .profile-container .mark_profile::after {
+    content: 'Achievements';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: rgb(146, 12, 12);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    letter-spacing: 3px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 3; 
+}
+
+.vertical_fourth .profile-container .mark_profile:hover::after {
+    opacity: 1;
+}
+
+.vertical_fourth .profile-container .mark_profile > * {
+    transition: filter 0.4s ease-in-out;
+}
+
+.vertical_fourth .profile-container .mark_profile:hover > * {
+    filter: blur(5px) brightness(60%);
+}
+
+
+
+.vertical_fourth .profile-container .mark_profile::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../images/bg/martin_bg.jpg);
+    background-size: cover;
+    filter: blur(2px) brightness(0.5);
+    z-index: 1;
+}
+
+
+.vertical_fourth .profile-container .mark_profile > * {
+    position: relative;
+    z-index: 2; 
+}
+
+
+
+/* Martin Profile */
+
+.vertical_fourth .profile-container .martin_profile {
+    border: solid 1px rgb(70, 70, 70);
+    position: relative;
+    height: 25vh;
+    display: flex;
+    border-radius: 40px;
+    overflow: hidden; 
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.vertical_fourth .profile-container .martin_profile::after {
+    content: 'Achievements';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+    background-color: rgb(146, 12, 12);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    letter-spacing: 3px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 3; 
+}
+
+.vertical_fourth .profile-container .martin_profile:hover::after {
+    opacity: 1;
+}
+
+.vertical_fourth .profile-container .martin_profile > * {
+    transition: filter 0.4s ease-in-out;
+}
+
+.vertical_fourth .profile-container .martin_profile:hover > * {
+    filter: blur(5px) brightness(60%);
+}
+
+.vertical_fourth .profile-container .martin_profile > * {
+    position: relative;
+    z-index: 2; 
+}
+
+.vertical_fourth .profile-container .martin_profile::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(../images/bg/profile_bg2.jpg);
+    background-size: cover;
+    filter: blur(2px) brightness(0.5);
+}
+
+
+.vertical_fourth .profile-container .martin_profile > * {
+    position: relative;
+    z-index: 2;
+}
+
+
+
+/* Profile style (every profile) */
+
+.vertical_fourth .profile-container .description{
+    float: left;
+    background-color: transparent;
+    margin: auto 0;
+    width: 100%;
+    overflow-y: auto;
+    max-height: 30vh;
+    color: white;
+    overflow-y: visible;
+    font-family: Tahoma, sans-serif;
+    letter-spacing: 1px;
+}
+
+.vertical_fourth .profile-container .description p{
+    margin-left: 100px;
+    margin-right: 100px;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.vertical_fourth .profile-container .profile-picture{
+    display: flex;
+    justify-content: space-evenly;
+    background-color: transparent;
+    min-width: 350px;
+}
+
+.vertical_fourth .profile-container .profile-picture img{
+    width: auto;
+    height: 100%;
+}
+
+
+
+/* Scrollbar style (for profile-container) */
+
+/* width */
+    .vertical_fourth .profile-container ::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+    .vertical_fourth .profile-container ::-webkit-scrollbar-track {
+    background: #616161;
+}
+
+/* Handle */
+    .vertical_fourth .profile-container ::-webkit-scrollbar-thumb {
+    background: #222222;
+}
+
+/* Handle on hover */
+    .vertical_fourth .profile-container ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

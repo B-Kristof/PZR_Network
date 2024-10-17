@@ -1,0 +1,72 @@
+/* VERTICAL SECOND (NAVIGATION) */
+.vertical_second {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    grid-auto-flow: row;
+}
+
+/* Base styling for each navigation div */
+.vertical_second .nav-esport,
+.vertical_second .nav-urbex,
+.vertical_second .nav-members-only {
+    position: relative; 
+    overflow: hidden;
+    transition: margin 0.3s ease; 
+    filter: brightness(30%);
+    z-index: 2;
+}
+
+/* Background styling for each div */
+.vertical_second .nav-esport {
+    background-image: url('../images/navigation/esport_nav.jpg');
+    background-size: cover; 
+    background-position: center; 
+}
+
+.vertical_second .nav-members-only{
+    background-image: url('../images/navigation/members_only_nav.jpg');
+    background-size: cover; 
+    background-position: center;
+}
+
+.vertical_second .nav-urbex {
+    background-image: url('../images/navigation/urbex_nav.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+
+.vertical_second .nav-esport:hover,
+.vertical_second .nav-urbex:hover,
+.vertical_second .nav-members-only:hover {
+    margin-left: -30%;
+    margin-right: -30%; 
+    z-index: 3; 
+    filter: brightness(100%);
+    cursor: pointer;
+}
+
+.overlay {
+    position: absolute; 
+    top: 15%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; 
+    font-size: 2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    transition-delay: 0.1s;
+    z-index: 3; 
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* Show overlay on hover */
+.vertical_second .nav-esport:hover .overlay,
+.vertical_second .nav-urbex:hover .overlay,
+.vertical_second .nav-members-only:hover .overlay {
+    opacity: 1; 
+}
