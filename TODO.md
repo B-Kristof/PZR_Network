@@ -1,35 +1,5 @@
-URBEX:
---- RANG SYSTEM ---
+# ESPORT:
 
-user: level 1
-    - add location
-    - cannot generate invitation
-
-member: level 2
-    - a user become a member if he add 5 VISITED locations -> desc, links
-    - can generate 2 invitation codes (? after all locations validated ?) 
-
-explorer: level 3
-    - a user become an explorer if he add 10 VISITED locations, and 10 TARGET locations -> desc, links
-    - can generate any invitation codes (? after all locations validated ?) 
-
-implement:
-admin: level n
-    - update, remove, add location
-    - can update other user's location
-    - ban, pardon user, member
-
-DEV: level n + 1
-    - all admin rights
-    - ban / pardon / add admin, user, member
-
---- MY PROFILE ---
-- username
-- rang
-- added visited location count
-- added target location count
-
-ESPORT:
 ### Todo
 
 - [ ] Profile for each member
@@ -62,3 +32,35 @@ ESPORT:
 - [x] members transparent images
 - [x] Home background for mobile
 - [x] member descriptions
+
+
+# URBEX:
+
+### Todo
+- [ ] Rang System
+    - [ ] user: level 1
+        - [ ] add location
+        - [ ] cannot generate invitation
+    - [ ] member: level 2
+        - [ ] a user become a member if he add 5 VISITED locations -> desc, links
+        - [ ] can generate 2 invitation codes (? after all locations validated ?) 
+    - [ ] explorer: level 3
+        - [ ] a user become an explorer if he add 10 VISITED locations, and 10 TARGET locations -> desc, links
+        - [ ] can generate any invitation codes (? after all locations validated ?) 
+    - [ ] admin: level n
+        - [ ] update, remove, add location
+        - [ ] can update other user's location
+        - [ ] ban, pardon user, member
+    - [ ] DEV: level n + 1
+        - [ ] all admin rights
+        - [ ] ban / pardon / add admin, user, member
+
+- [ ] My Profile improvemenets
+    - [ ] username
+    - [ ] rang
+    - [ ] added visited location count
+    - [ ] added target location count
+     
+### In Progress
+
+### Done ✓
