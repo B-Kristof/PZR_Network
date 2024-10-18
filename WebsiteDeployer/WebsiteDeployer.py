@@ -16,17 +16,6 @@ if __name__ == "__main__":
     logger = LogSetter(logging.DEBUG)
     logger.setup()
 
-    '''
-    logging.debug("Requesting CLI startup...")
-    cli = CLIMenu()
-    cli.main_menu()
-    '''
-    keymanager = KeyManager("Data/keystore.json", "Data/ssh-key-server.key")
-    sshserver = SSHServer("pzrteam.hu", 22, "ubuntu", "Data/ssh-key-server.key")
-    conn = sshserver.connect()
-    sshserver.verify_server_identity(conn.ssh_con, keymanager.load_fingerprint())
-    conn.extend_to_sftp()
-
     logging.debug("loading configurations...")
     # Example usage
     loader = ConfigLoader(
@@ -36,13 +25,17 @@ if __name__ == "__main__":
 
     config = loader.load_configs()
 
-    if config:
-        logging.debug(f"\nDeployer configuration parameters:\nWebserver folder: {config.webserver.webserver_folder}\n"
-                      f"Backup folder: {config.webserver.deployer_config.backup_folder}")
-    else:
-        raise Exception("Invalid or missing deployer configuration file!")
+    # Prompt to select webserver
+    logging.debug("Requesting CLI startup...")
+    cli = CLIMenu(config)
+    cli.main_menu()
 
-    compress_folder(conn, config.deployer.deployer_config)
-
+    '''
+    keymanager = KeyManager("Data/keystore.json", "Data/ssh-key-server.key")
+    sshserver = SSHServer("pzrteam.hu", 22, "ubuntu", "Data/ssh-key-server.key")
+    conn = sshserver.connect()
+    sshserver.verify_server_identity(conn.ssh_con, keymanager.load_fingerprint())
+    conn.extend_to_sftp()
+    '''
 
 

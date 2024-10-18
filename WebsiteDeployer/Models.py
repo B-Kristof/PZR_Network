@@ -8,9 +8,10 @@ class Deployer:
 
 
 class Webserver:
-    def __init__(self, url: str, ip_address: str, state: bool, last_answer: datetime.datetime):
+    def __init__(self, url: str, ip_address: str, role: str, state: bool, last_answer: datetime.datetime):
         self.url = url
         self.ip_address = ip_address
+        self.role = role
         self.state = state
         self.last_answer = last_answer
 
