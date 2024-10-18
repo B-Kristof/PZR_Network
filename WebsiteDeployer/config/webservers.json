@@ -1,0 +1,14 @@
+{
+  "Main": {
+    "url": "pzrteam.hu",
+    "ip_address": "152.67.64.71",
+    "state": true,
+    "last_answer": 0
+  },
+  "Urbex": {
+    "url": "urbex.pzrteam.hu",
+    "ip_address": "89.168.80.13",
+    "state": true,
+    "last_answer": 0
+  }
+}

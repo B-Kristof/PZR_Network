@@ -1,19 +1,79 @@
-import os
+import logging
 import json
+import os
+from Models import Webserver, Deployer
+
+class Config:
+    def __init__(self):
+        pass
+
+class ConfigLoader:
+    def __init__(self, config_files: list, classes_parse_to: list):
+        self.config_files = config_files
+        self.classes_parse_to = classes_parse_to
+
+    def load_configs(self) -> Config:
+        instances = {}
+
+        subclasses = ConfigLoader.__subclasses__()
+        if len(subclasses) != len(self.config_files) or len(subclasses) != len(self.classes_parse_to):
+            logging.error("Number of subclasses must match the number of config files and classes.")
+            raise Exception("Fatal error: cannot load configurations!")
+
+        for i, subclass in enumerate(subclasses):
+            subloader = subclass(self.config_files[i], self.classes_parse_to[i])
+            res = subloader.load_config()
+            instances[self.classes_parse_to[i].__name__] = res  # Direct assignment instead of using update()
+
+            logging.debug(f"{self.classes_parse_to[i].__name__} configuration loaded.")
+
+        # Create config object
+        config = Config()
+        for key in instances.keys():
+            setattr(config, key.lower(), instances[key])  # Use lower() to maintain consistency
+
+        return config
 
 
-class DeployerConfig:
-    def __init__(self, webserver_folder: str, backup_folder: str):
-        self.webserver_folder = webserver_folder
-        self.backup_folder = backup_folder
+class WebserverConfigLoader(ConfigLoader):
+    def __init__(self, file_path: str, class_to_parse):
+        super().__init__([file_path], [class_to_parse])  # Pass the file_path and class_to_parse
+        self.file_path = file_path
+        self.class_to_parse = class_to_parse
+
+    def load_config(self):
+        json_data = load_json(self.file_path)
+        if json_data is False:
+            logging.error(f"Failed to load JSON from {self.file_path}.")
+            return []
+
+        servers = []
+        for key in list(json_data.keys()):
+            servers.append(parse_to_instance(json_data[key], self.class_to_parse))
+
+        return servers
 
 
-def load_json(infile_path: str) -> dict or bool:
+class DeployerConfigLoader(ConfigLoader):
+    def __init__(self, file_path: str, class_to_parse):
+        super().__init__([file_path], [class_to_parse])  # Pass the file_path and class_to_parse
+        self.file_path = file_path
+        self.class_to_parse = class_to_parse
+
+    def load_config(self):
+        json_data = load_json(self.file_path)
+        if json_data is False:
+            logging.error(f"Failed to load JSON from {self.file_path}.")
+            return None
+
+        return parse_to_instance(json_data, self.class_to_parse)
+
+
+def load_json(infile_path: str) -> dict | bool:  # Changed to 'dict | bool'
     """
     :param infile_path: path and json file
     :return: dict or False if failed
     """
-
     if not os.path.exists(infile_path):
         return False
 
@@ -22,26 +82,28 @@ def load_json(infile_path: str) -> dict or bool:
             data = json.load(file)
         return data
     except Exception as e:
+        logging.error(f"Error loading JSON from {infile_path}: {str(e)}")
         return False
 
 
-def parse_json(json_data) -> 'DeployerConfig' or bool:
-    """
-    :param json_data: dict object to parse
-    :return: DeployerConfig instance or False if failed
-    """
-    if json_data:
-        return DeployerConfig(
-            json_data["webserver_folder"],
-            json_data["backup_folder"]
-        )
-    else:
-        return False
+def parse_to_instance(json_data: dict, obj_class):
+    try:
+        # Get the attributes (parameters) from the __init__ method of the class
+        attributes = obj_class.__init__.__annotations__.keys() if hasattr(obj_class.__init__, '__annotations__') else []
 
+        # Filter json_data to include only relevant keys that match the class attributes
+        filtered_data = {key: json_data[key] for key in attributes if key in json_data}
 
-def load_config(infile_path: str) -> 'DeployerConfig' or bool:
-    """
-    :param infile_path: path and json file
-    :return: DeployerConfig instance or False if failed
-    """
-    return parse_json(load_json(infile_path))
+        # Create an instance of the class with the filtered data
+        instance = obj_class(**filtered_data)
+
+        # Load remaining json data as instance properties
+        for key, value in json_data.items():
+            if not hasattr(instance, key):
+                setattr(instance, key, value)
+
+        return instance
+
+    except Exception as e:
+        logging.critical(f"Fatal error. Cannot create {obj_class.__name__} instance: {str(e)}")
+        raise Exception("Cannot create config loader class instance!")

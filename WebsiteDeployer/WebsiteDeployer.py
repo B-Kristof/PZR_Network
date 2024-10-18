@@ -3,8 +3,9 @@ from SetLogger import LogSetter
 from cli import CLIMenu
 from KeyManager.KeyManager import KeyManager
 from ServerManager.SSHServer import SSHServer
-from ConfigLoader import load_config, DeployerConfig
+from ConfigLoader import ConfigLoader
 from BackupSystem.Compressor import compress_folder
+from Models import *
 
 
 if __name__ == "__main__":
@@ -26,15 +27,22 @@ if __name__ == "__main__":
     sshserver.verify_server_identity(conn.ssh_con, keymanager.load_fingerprint())
     conn.extend_to_sftp()
 
-    logging.debug("loading Deployer configuration...")
-    deployer_config: DeployerConfig = load_config("config/deployer.json")
-    if deployer_config:
-        logging.debug(f"\nDeployer configuration parameters:\nWebserver folder: {deployer_config.webserver_folder}\n"
-                      f"Backup folder: {deployer_config.backup_folder}")
+    logging.debug("loading configurations...")
+    # Example usage
+    loader = ConfigLoader(
+        ["config/webservers.json", "config/deployer.json"],
+        [Webserver, Deployer]  # Changed ConfigLoader to DeployerConfig
+    )
+
+    config = loader.load_configs()
+
+    if config:
+        logging.debug(f"\nDeployer configuration parameters:\nWebserver folder: {config.webserver.webserver_folder}\n"
+                      f"Backup folder: {config.webserver.deployer_config.backup_folder}")
     else:
         raise Exception("Invalid or missing deployer configuration file!")
 
-    compress_folder(conn, deployer_config)
+    compress_folder(conn, config.deployer.deployer_config)
 
 
 
