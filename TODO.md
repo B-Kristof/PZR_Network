@@ -70,6 +70,34 @@
 - [ ] SSL Certificate
     
 - [ ] ÁSZF / Terms and Conditions
+
+- [ ] Basic informations and tips
+    - [ ] Urbex in general
+    - [ ] Safety
+    - [ ] Equipment
+    - [ ] Tips
+
+- [ ] Restructure Locations menu
+    - [ ] All locations (No visited locations)
+
+ - [ ] User can mark location as "Visited"
+     - [ ] Modify Location model
+     - [ ] Modify database -> add "visited_by" column -> store the user ID of the users who visited
+     - [ ] Fix map display (red and blue marker)
+     - [ ] Delete visited_locations.json
+     - [ ] Fix js code (do not load visited_locations.json)
+
+- [ ] Store locations in a database
+
+- [ ] Download archived (rar/zip) images of a location
+
+- [ ] robots.txt -> Avoid indexing by Google
+
+- [ ] Location "flags" -> CCTV, Guard, Guard dog(s), Alarm system, Risk of collapse, Still water, Active demolotion, Squatter(s), Active electricity/Risk of electric shock, black mold
+
+- [ ] Improved Gallery view
+
+- [ ] 
       
 ### In Progress
 
