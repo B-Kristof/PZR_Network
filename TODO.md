@@ -97,7 +97,6 @@
 
 - [ ] Improved Gallery view
 
-- [ ] 
       
 ### In Progress
 
