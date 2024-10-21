@@ -5,10 +5,16 @@
 - [ ] Profile for each member
     - [ ] Link social medias for each member (Instagram, Youtube, Twitch, etc.)
     - [ ] Achievements of each member
+- [ ] Mobile background for Driver profiles
+- [ ] Better font for Driver profiles
+- [ ] Translate "Subscribe" to Hungarian (Media section)
 
 ### In Progress
 
 - [ ] Website deployer (Python script)
+- [ ] Website Monitor (Python script)
+    - [ ] Offline state alert system
+    - [ ] GUI
 
 
 ### Done ✓
@@ -60,7 +66,11 @@
     - [ ] rang
     - [ ] added visited location count
     - [ ] added target location count
-     
+
+- [ ] SSL Certificate
+    
+- [ ] ÁSZF / Terms and Conditions
+      
 ### In Progress
 
 ### Done ✓
