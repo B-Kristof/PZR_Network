@@ -2,10 +2,13 @@ import logging
 import json
 import os
 from Models import Webserver, Deployer
+from ErrorHandler import FatalErrorHandler
+
 
 class Config:
     def __init__(self):
         pass
+
 
 class ConfigLoader:
     def __init__(self, config_files: list, classes_parse_to: list):
@@ -13,26 +16,31 @@ class ConfigLoader:
         self.classes_parse_to = classes_parse_to
 
     def load_configs(self) -> Config:
-        instances = {}
+        try:
+            instances = {}
 
-        subclasses = ConfigLoader.__subclasses__()
-        if len(subclasses) != len(self.config_files) or len(subclasses) != len(self.classes_parse_to):
-            logging.error("Number of subclasses must match the number of config files and classes.")
-            raise Exception("Fatal error: cannot load configurations!")
+            subclasses = ConfigLoader.__subclasses__()
+            if len(subclasses) != len(self.config_files) or len(subclasses) != len(self.classes_parse_to):
+                logging.error("Number of subclasses must match the number of config files and classes.")
+                raise Exception("Fatal error: cannot load configurations!")
 
-        for i, subclass in enumerate(subclasses):
-            subloader = subclass(self.config_files[i], self.classes_parse_to[i])
-            res = subloader.load_config()
-            instances[self.classes_parse_to[i].__name__] = res  # Direct assignment instead of using update()
+            for i, subclass in enumerate(subclasses):
+                subloader = subclass(self.config_files[i], self.classes_parse_to[i])
+                res = subloader.load_config()
+                instances[self.classes_parse_to[i].__name__] = res  # Direct assignment instead of using update()
 
-            logging.debug(f"{self.classes_parse_to[i].__name__} configuration loaded.")
+                logging.debug(f"{self.classes_parse_to[i].__name__} configuration loaded.")
 
-        # Create config object
-        config = Config()
-        for key in instances.keys():
-            setattr(config, key.lower(), instances[key])  # Use lower() to maintain consistency
+            # Create config object
+            config = Config()
+            for key in instances.keys():
+                setattr(config, key.lower(), instances[key])  # Use lower() to maintain consistency
 
-        return config
+            return config
+        except ValueError as ve:
+            FatalErrorHandler.FatalError(ve, "Fatal Value Error while loading and parsing configuration files.")
+        except Exception as e:
+            FatalErrorHandler.FatalError(e, "Fatal Error while loading and parsing configuration files.")
 
 
 class WebserverConfigLoader(ConfigLoader):
@@ -42,16 +50,21 @@ class WebserverConfigLoader(ConfigLoader):
         self.class_to_parse = class_to_parse
 
     def load_config(self):
-        json_data = load_json(self.file_path)
-        if json_data is False:
-            logging.error(f"Failed to load JSON from {self.file_path}.")
-            return []
+        try:
+            json_data = load_json(self.file_path)
+            if json_data is False:
+                logging.error(f"Failed to load JSON from {self.file_path}.")
+                raise
+            servers = []
+            for key in list(json_data.keys()):
+                servers.append(parse_to_instance(json_data[key], self.class_to_parse))
 
-        servers = []
-        for key in list(json_data.keys()):
-            servers.append(parse_to_instance(json_data[key], self.class_to_parse))
+            return servers
 
-        return servers
+        except FileNotFoundError as fnf:
+            FatalErrorHandler.FatalError(fnf, f"{self.file_path} file not found").display_error()
+        except Exception as e:
+            FatalErrorHandler.FatalError(e, f"Fatal error while loading {self.file_path} file").display_error()
 
 
 class DeployerConfigLoader(ConfigLoader):
@@ -61,12 +74,19 @@ class DeployerConfigLoader(ConfigLoader):
         self.class_to_parse = class_to_parse
 
     def load_config(self):
-        json_data = load_json(self.file_path)
-        if json_data is False:
-            logging.error(f"Failed to load JSON from {self.file_path}.")
-            return None
+        try:
+            json_data = load_json(self.file_path)
+            if json_data is False:
+                logging.error(f"Failed to load JSON from {self.file_path}.")
+                raise FileNotFoundError()
 
-        return parse_to_instance(json_data, self.class_to_parse)
+            return parse_to_instance(json_data, self.class_to_parse)
+
+        except FileNotFoundError as fnf:
+            FatalErrorHandler.FatalError(fnf, f"{self.file_path} file not found").display_error()
+
+        except Exception as e:
+            FatalErrorHandler.FatalError(e, f"Fatal error while loading {self.file_path} file").display_error()
 
 
 def load_json(infile_path: str) -> dict | bool:  # Changed to 'dict | bool'
