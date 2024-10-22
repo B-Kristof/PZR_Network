@@ -8,6 +8,8 @@
 - [ ] Mobile background for Driver profiles
 - [ ] Better font for Driver profiles
 - [ ] Translate "Subscribe" to Hungarian (Media section)
+- [ ] Redirecthandler -> write in apache log
+    - [ ] Filter for valid records 
 
 ### In Progress
 
@@ -93,10 +95,11 @@
 
 - [ ] robots.txt -> Avoid indexing by Google
 
-- [ ] Location "flags" -> CCTV, Guard, Guard dog(s), Alarm system, Risk of collapse, Still water, Active demolotion, Squatter(s), Active electricity/Risk of electric shock, black mold
+- [ ] Location "flags" -> CCTV, Guard, Guard dog(s), Alarm system, Risk of collapse, Still water, Active demolotion, Squatter(s), Active electricity / Risk of electric shock, black mold, Partly Occupied Building, hazardous materials, other (provide description)
 
 - [ ] Improved Gallery view
 
+- [ ] ? Location type ? -> Residential (House, Apartment etc.), Industrial (Factories, Warehouses etc.), Public Service (Hospitals, Offices, Aslyiums, Fire / Police stations, School etc), Recreational (Amusement parks, Sport Arenas, Cinemas), Military or Historical (Bunkers, Castles, Military bases etc)
       
 ### In Progress
 
