@@ -24,15 +24,3 @@ def ping_target(target: str, timeout=2):
     except Exception as e:
         fatal_handler = FatalErrorHandler.FatalError(e, "Fatal Error while website availability check.")
         fatal_handler.display_error()
-
-
-def ping_targets(webservers: list[Webserver]):
-    """
-    Loop over the Webserver instances and check if they are up
-    :param webservers: Webserver instance
-    """
-    for webserver in webservers:
-        if ping_target(webserver.url):
-            webserver.state = True
-        else:
-            webserver.state = False

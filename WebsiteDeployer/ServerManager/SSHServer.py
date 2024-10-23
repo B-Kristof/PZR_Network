@@ -1,4 +1,6 @@
 import binascii
+import sys
+from ErrorHandler import FatalErrorHandler
 import paramiko
 import logging
 from hashlib import sha3_512
@@ -13,26 +15,42 @@ class SSHServer:
         self.private_key = private_key
 
     def connect(self):
+        """
+        Connects to an SSH server with key file
+        :return: Connection instance
+        """
+        try:
+            # Create SSHClient instance
+            ssh_client = paramiko.SSHClient()
 
-        # Create SSHClient instance
-        ssh_client = paramiko.SSHClient()
+            # Automatically add the server's host key
+            ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-        # Automatically add the server's host key
-        ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            # Load the private key (PPK file)
+            priv_key = paramiko.RSAKey.from_private_key_file(self.private_key)
 
-        # Load the private key (PPK file)
-        priv_key = paramiko.RSAKey.from_private_key_file(self.private_key)
+            # Connect to the server
+            ssh_client.connect(self.hostname, self.port, username=self.username, pkey=priv_key)
+            logging.info(f"Connected to {self.hostname}:{self.port}")
 
-        # Connect to the server
-        ssh_client.connect(self.hostname, self.port, username=self.username, pkey=priv_key)
-        logging.info(f"Connected to {self.hostname}:{self.port}")
+            connection = Connection(ssh_client)
 
-        connection = Connection(ssh_client)
-
-        # return connection
-        return connection
+            # return connection
+            return connection
+        except paramiko.SSHException as sshe:
+            fatal_handler = FatalErrorHandler.FatalError(sshe, f"SSH Exception occurred while connecting"
+                                                               f" to {self.hostname}")
+            fatal_handler.display_error()
+        except Exception as e:
+            fatal_handler = FatalErrorHandler.FatalError(e, f"Exception occurred while connecting"
+                                                               f" to {self.hostname}")
+            fatal_handler.display_error()
 
     def disconnect(self, connection):
+        """
+        Disconnects from SSH server by closing connection
+        :param connection: Connection instance
+        """
         try:
             logging.debug(f"Disconnecting from {self.hostname}:{self.port}...")
             if connection.sftp_con:
@@ -47,6 +65,12 @@ class SSHServer:
             logging.warning("An error occurred while closing the connection:", e)
 
     def verify_server_identity(self, conn: paramiko.SSHClient, fingerprint_from_keystore):
+        """
+        Verify server identity by comparing fingerprint from keystore with the provided one
+        :param conn: paramiko.SSHClient instance
+        :param fingerprint_from_keystore: fingerprint from Data/keystore.json
+        :return: True if the server identity is valid, False if not
+        """
         logging.debug("Verifying server identity...")
 
         def hash_sha3_512(input_str):
@@ -76,7 +100,7 @@ class SSHServer:
                 logging.critical("Fingerprints does not match. Connection is insecure. Closing connection...")
                 conn.close()
                 logging.debug(f"Disconnected from {self.hostname}:{self.port}")
-                exit()
+                sys.exit()
 
         except Exception as e:
             logging.critical(f"Error while verifying server identity: {e}")
