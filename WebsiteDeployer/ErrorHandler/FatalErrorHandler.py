@@ -1,7 +1,4 @@
-import logging
 import traceback
-from ServerManager.SSHServer import SSHServer
-from ServerManager.Connection import Connection
 
 
 class FatalError:
