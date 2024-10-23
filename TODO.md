@@ -104,3 +104,17 @@
 ### In Progress
 
 ### Done ✓
+
+# WebsiteDeployer
+
+### Todo
+
+- [ ] GUI
+
+- [ ] DiscordBotConfig
+
+- [ ] CLI based Monitor
+
+### In Progress
+
+### Done ✓
