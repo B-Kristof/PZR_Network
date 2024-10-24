@@ -6,13 +6,12 @@ from KeyManager.KeyManager import KeyManager
 from ServerManager.SSHServer import SSHServer
 from ConfigLoader import ConfigLoader
 from BackupSystem.Compressor import compress_folder
-from WebsitMonitor.DiscordNotifier import discord_notifier_interface, DiscordNotifier
 from Models import *
 from ErrorHandler.FatalErrorHandler import *
 from ErrorHandler.KeyboardInterruptHandler import *
 from ErrorHandler import CleanUpHandler
-from WebsitMonitor.GUI import MainWindow
-from WebsitMonitor import Pinger
+from WebsiteMonitor.GUI import MainWindow
+from WebsiteMonitor import Pinger
 
 
 if __name__ == "__main__":
@@ -27,8 +26,8 @@ if __name__ == "__main__":
         logging.debug("loading configurations...")
         # Example usage
         loader = ConfigLoader(
-            ["config/webservers.json", "config/deployer.json"],
-            [Webserver, Deployer]  # Changed ConfigLoader to DeployerConfig
+            ["config/webservers.json", "config/deployer.json", "config/discordbot.json"],
+            [Webserver, Deployer, DiscordBot]  # Changed ConfigLoader to DeployerConfig
         )
 
         config = loader.load_configs()

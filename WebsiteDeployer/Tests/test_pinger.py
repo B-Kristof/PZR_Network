@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch, Mock
 import requests
-from WebsitMonitor.Pinger import ping_target
+from WebsiteMonitor.Pinger import ping_target
 
 
 class TestPingTarget(unittest.TestCase):

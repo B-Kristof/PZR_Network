@@ -7,7 +7,7 @@ from KeyManager.KeyManager import KeyManager
 from ServerManager.SSHServer import SSHServer
 from ConfigLoader import ConfigLoader
 from BackupSystem.Compressor import compress_folder
-from WebsitMonitor.DiscordNotifier import discord_notifier_interface, DiscordNotifier
+from WebsiteMonitor.DiscordNotifier import discord_notifier_interface, DiscordNotifier
 from Models import *
 from Pinger import ping_target
 

@@ -1,6 +1,6 @@
 import json
 from .Encrypter import *
-
+from ErrorHandler import FatalErrorHandler
 
 class KeyManager:
     def __init__(self, keystore_file, ssh_key_file):
@@ -20,21 +20,29 @@ class KeyManager:
             with open(self.keystore, 'r') as ks:
                 data = json.load(ks)
             return data['encryption_key']
-        except FileNotFoundError:
-            print(f"File not found: {self.keystore}. This error is fatal!\n\nAbort by system.")
-            exit()
-        except json.JSONDecodeError as e:
-            print(f"Fatal Error decoding JSON ({self.keystore}): {e}\n\nAbort by system.")
-            exit()
+        except FileNotFoundError as fnf:
+            fatal_handler = FatalErrorHandler.FatalError(fnf, f"{self.keystore} not found!")
+            fatal_handler.display_error()
+        except json.JSONDecodeError as jsone:
+            fatal_handler = FatalErrorHandler.FatalError(jsone, f"Fatal Error decoding JSON ({self.keystore})")
+            fatal_handler.display_error()
+        except Exception as e:
+            fatal_handler = FatalErrorHandler.FatalError(e, f"Unhandled Fatal exception occurred while"
+                                                            f" loading encryption key from keystore")
+            fatal_handler.display_error()
 
     def load_fingerprint(self):
         try:
             with open(self.keystore, 'r') as ks:
                 data = json.load(ks)
             return data['server_fingerprint']
-        except FileNotFoundError:
-            print(f"File not found: {self.keystore}. This error is fatal!\n\nAbort by system.")
-            exit()
-        except json.JSONDecodeError as e:
-            print(f"Fatal Error decoding JSON ({self.keystore}): {e}\n\nAbort by system.")
-            exit()
+        except FileNotFoundError as fnf:
+            fatal_handler = FatalErrorHandler.FatalError(fnf, f"{self.keystore} not found!")
+            fatal_handler.display_error()
+        except json.JSONDecodeError as jsone:
+            fatal_handler = FatalErrorHandler.FatalError(jsone, f"Fatal Error decoding JSON ({self.keystore})")
+            fatal_handler.display_error()
+        except Exception as e:
+            fatal_handler = FatalErrorHandler.FatalError(e, f"Unhandled Fatal exception occurred while"
+                                                            f" loading fingerprint key from keystore")
+            fatal_handler.display_error()
