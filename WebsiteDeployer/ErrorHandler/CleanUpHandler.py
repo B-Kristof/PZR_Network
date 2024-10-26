@@ -1,18 +1,21 @@
 import logging
-from ServerManager.SSHServer import SSHServer
-from ServerManager.Connection import Connection
+from ConfigLoader import Config
 
 
-def cleanup(ssh_server: SSHServer or None, conn: Connection or None):
+def cleanup(config: Config or None):
     """
     Close SSH and SFTP connection and hang the program until user input
-    :param ssh_server: SSHServer instance
-    :param conn: Connection Instance
+    :param config: Config instance
     """
     logging.debug("Starting cleanup...")
-    if ssh_server:
-        ssh_server.disconnect(conn)
+    if config:
+        for webserver in config.webserver:
+            if webserver.conn:
+                webserver.conn.disconnect()
+                logging.debug(f"Disconnected from {webserver.ip_address} ({webserver.url})")
+            else:
+                logging.debug(f"No connection with {webserver.ip_address} ({webserver.url})")
     else:
-        logging.debug("No connection to close!")
+        logging.debug(f"No connection to close.")
 
     input("Press any key to exit...")

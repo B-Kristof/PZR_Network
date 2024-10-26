@@ -1,15 +1,14 @@
 from SetLogger import LogSetter
-from KeyManager.KeyManager import KeyManager
-from ServerManager.SSHServer import SSHServer
+from BackupSystem.BackupCreator import create_backup
 from ConfigLoader import ConfigLoader
 from Models import *
 from ErrorHandler.FatalErrorHandler import *
 from ErrorHandler.KeyboardInterruptHandler import *
 from ErrorHandler import CleanUpHandler
-from BackupSystem import Compressor
+from cli import CLIMenu
 
 if __name__ == "__main__":
-    conn, sshserver = None, None
+    conn, config, sshserver = None, None, None
     try:
         # Change Paramiko logging level to Warning
         logging.getLogger("paramiko").setLevel(logging.WARNING)
@@ -25,14 +24,11 @@ if __name__ == "__main__":
 
         config = loader.load_configs()
 
-        keymanager = KeyManager("Data/keystore.json", "Data/ssh-key-server.key")
-        sshserver = SSHServer("pzrteam.hu", 22, "ubuntu", "Data/ssh-key-server.key")
-        conn = sshserver.connect()
-        sshserver.verify_server_identity(conn.ssh_con, keymanager.load_fingerprint())
-        conn.extend_to_sftp()
+        menu = CLIMenu(config)
+        menu.main_menu()
 
         # Compressor.compress_folder(conn, config.webserver[0])
-        Compressor.check_dir_exists(conn, "/var/www/html")
+        # Compressor.check_remote_dir_exists(conn, "/var/www/html")
 
     except KeyboardInterrupt as kbi_exception:
         kbi_handler = KeyboardInterruptHandler(kbi_exception)
@@ -41,7 +37,7 @@ if __name__ == "__main__":
         fatal_handler = FatalError(e, "Fatal Error")
         fatal_handler.display_error()
     finally:
-        CleanUpHandler.cleanup(sshserver, conn)
+        CleanUpHandler.cleanup(config)
 
     '''
     # Prompt to select webserver

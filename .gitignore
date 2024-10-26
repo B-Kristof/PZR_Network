@@ -1,5 +1,6 @@
 WebsiteDeployer/Data
-WebsiteDeployer/config/discordbot.json
+WebsiteDeployer/config
+WebsiteDeployer/Website_Backups/
 urbex/images
 urbex/data
 esport/utilities/redirect_log.txt

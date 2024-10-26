@@ -1,6 +1,9 @@
+import time
+
 import pick
 import logging
 from ConfigLoader import Config
+from BackupSystem.BackupCreator import create_backup
 
 
 class CLIMenu:
@@ -14,7 +17,7 @@ class CLIMenu:
         selected = ""
         while selected != "Exit":
             title = (
-                f"Main Menu [ Target: {self.target_webserver} ]"
+                f"Main Menu [ Target: {self.target_webserver.role} ({self.target_webserver.url}) ]"
                 if self.target_webserver
                 else "Main Menu [ CLI root ]"
             )
@@ -28,11 +31,14 @@ class CLIMenu:
                     case "Exit":
                         return
             else:
-                options = ["Deploy Server", "Rollback", "Back", "Exit"]
+                options = ["Deploy Server", "Create backup", "Rollback", "Back", "Exit"]
                 selected, index = pick.pick(options, title, indicator=self.indicator, default_index=0)
                 match selected:
                     case "Deploy Server":
                         pass
+                    case "Create backup":
+                        create_backup(webserver=self.target_webserver)
+                        time.sleep(3)
                     case "Rollback":
                         pass
                     case "Back":
@@ -46,7 +52,9 @@ class CLIMenu:
             options = [server.role for server in self.config.webserver]
             selected, index = pick.pick(options, "Select target", indicator=self.indicator, default_index=0)
             if selected in options:
-                self.target_webserver = selected
+                self.target_webserver = next((s for s in self.config.webserver if s.role == selected), None)
+                self.target_webserver.connect()
+                self.target_webserver.extend_to_sftp()
                 return selected
             else:
                 return

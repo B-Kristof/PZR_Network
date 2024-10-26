@@ -1,7 +1,7 @@
 import subprocess
 import tkinter as tk
 import logging
-from ServerManager.Connection import Connection
+from ServerManager.SSHServer import SSHServerConnection
 from ErrorHandler import FatalErrorHandler
 from ConfigLoader import Config
 from WebsiteMonitor import Pinger
@@ -37,7 +37,7 @@ class GUILabel(GUIElement):
 
 
 class MainWindow:
-    def __init__(self, conn: Connection, config: Config):
+    def __init__(self, conn: SSHServerConnection, config: Config):
         self.conn = conn
         self.config = config
         self.root = tk.Tk()

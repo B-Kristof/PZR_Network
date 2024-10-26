@@ -6,8 +6,10 @@
     "state": true,
     "last_answer": 0,
     "webserver_folder": "/var/www/html",
-    "backup_path": "/home/ubuntu/website_backup/PZRMainWebsiteBackup.tar",
-    "local_folder": "C:/xampp/hotdocs"
+    "remote_backup_path": "/home/ubuntu/website_backup/PZRMainWebsiteBackup.tar",
+    "local_backup_path": "Website_Backups/main/PZRMainWebsiteBackup.tar",
+    "local_folder": "C:/xampp/hotdocs",
+    "ssh_key_file": "Data/ssh-key-server.key"
   },
   "Urbex": {
     "url": "http://urbex.pzrteam.hu",
@@ -16,7 +18,9 @@
     "state": true,
     "last_answer": 0,
     "webserver_folder": "/var/www/html",
-    "backup_path": "/home/ubuntu/website_backup/PZRMainWebsiteBackup.tar",
-    "local_folder": "C:/xampp/hotdocs"
+    "remote_backup_path": "/home/ubuntu/website_backup/PZRMainWebsiteBackup.tar",
+    "local_backup_path": "Website_Backups/urbex/PZRUrbexWebsiteBackup.tar",
+    "local_folder": "C:/xampp/hotdocs",
+    "ssh_key_file": "Data/ssh-key-urbex.key"
   }
 }
