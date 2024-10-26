@@ -4,13 +4,19 @@
     "ip_address": "152.67.64.71",
     "role": "Main",
     "state": true,
-    "last_answer": 0
+    "last_answer": 0,
+    "webserver_folder": "/var/www/html",
+    "backup_path": "/home/ubuntu/website_backup/PZRMainWebsiteBackup.tar",
+    "local_folder": "C:/xampp/hotdocs"
   },
   "Urbex": {
     "url": "http://urbex.pzrteam.hu",
     "ip_address": "89.168.80.13",
     "role": "Urbex",
     "state": true,
-    "last_answer": 0
+    "last_answer": 0,
+    "webserver_folder": "/var/www/html",
+    "backup_path": "/home/ubuntu/website_backup/PZRMainWebsiteBackup.tar",
+    "local_folder": "C:/xampp/hotdocs"
   }
 }

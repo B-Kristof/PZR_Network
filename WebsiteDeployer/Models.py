@@ -14,12 +14,16 @@ class Deployer:
 
 
 class Webserver:
-    def __init__(self, url: str, ip_address: str, role: str, state: bool, last_answer: datetime.datetime):
+    def __init__(self, url: str, ip_address: str, role: str, state: bool, last_answer: datetime.datetime,
+                 webserver_folder: str, backup_path: str, local_folder: str):
         self.url = url
         self.ip_address = ip_address
         self.role = role
         self.state = state
         self.last_answer = last_answer
+        self.webserver_folder = webserver_folder
+        self.backup_path = backup_path
+        self.local_folder = local_folder
 
     def change_last_answer(self, new_last_answer: datetime.datetime):
         self.last_answer = new_last_answer

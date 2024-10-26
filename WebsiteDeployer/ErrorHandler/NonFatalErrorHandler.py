@@ -1,8 +1,7 @@
-import sys
 import traceback
 
 
-class FatalError:
+class NonFatalError:
     """
     Handling Fatal errors and cleanup
     """
@@ -20,6 +19,5 @@ class FatalError:
 
         # Display error type and message
         print(f"{str(self.exception)}: {self.error_message}")
-        sys.exit()
 
 

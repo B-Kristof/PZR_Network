@@ -1,4 +1,5 @@
 from ServerManager.Connection import Connection
+from ErrorHandler import FatalErrorHandler, NonFatalErrorHandler
 import paramiko
 import logging
 
@@ -28,10 +29,19 @@ def execute_command(conn: Connection, command: str):
 
         # Non zero return code or stderr present
         elif stderr.read().decode() or command_return_code != 0:
-            logging.critical("Fatal error. Command execution error on server side (return code: "
-                             + str(command_return_code) + ") "
+            error_message = (("Error. Command execution error on server side (return code: "
+                             + str(command_return_code) + ") ")
                              + str(stderr.read().decode()))
-            raise Exception("Fatal error. Command execution error on server side")
+            e = Exception(error_message)
+            nonfatal_handler = NonFatalErrorHandler.NonFatalError(e, error_message)
+            nonfatal_handler.display_error()
 
     except paramiko.ssh_exception.SSHException as sshe:
-        raise Exception("Fatal error. Cannot execute command on server side: " + str(sshe))
+        fatal_handler = FatalErrorHandler.FatalError(sshe, f"Fatal SSH exception occurred while executing"
+                                                           f"command on server side: {command}")
+        fatal_handler.display_error()
+        return False
+    except Exception as e:
+        fatal_handler = FatalErrorHandler.FatalError(e, f"Fatal exception occurred while executing"
+                                                        f"command on server side: {command}")
+        fatal_handler.display_error()

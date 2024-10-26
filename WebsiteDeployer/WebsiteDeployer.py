@@ -1,18 +1,12 @@
-import logging
-import threading
 from SetLogger import LogSetter
-from cli import CLIMenu
 from KeyManager.KeyManager import KeyManager
 from ServerManager.SSHServer import SSHServer
 from ConfigLoader import ConfigLoader
-from BackupSystem.Compressor import compress_folder
 from Models import *
 from ErrorHandler.FatalErrorHandler import *
 from ErrorHandler.KeyboardInterruptHandler import *
 from ErrorHandler import CleanUpHandler
-from WebsiteMonitor.GUI import MainWindow
-from WebsiteMonitor import Pinger
-
+from BackupSystem import Compressor
 
 if __name__ == "__main__":
     conn, sshserver = None, None
@@ -24,10 +18,9 @@ if __name__ == "__main__":
         logger.setup()
 
         logging.debug("loading configurations...")
-        # Example usage
         loader = ConfigLoader(
-            ["config/webservers.json", "config/deployer.json", "config/discordbot.json"],
-            [Webserver, Deployer, DiscordBot]  # Changed ConfigLoader to DeployerConfig
+            ["config/webservers.json", "config/discordbot.json"],
+            [Webserver, DiscordBot]  # Changed ConfigLoader to DeployerConfig
         )
 
         config = loader.load_configs()
@@ -38,8 +31,8 @@ if __name__ == "__main__":
         sshserver.verify_server_identity(conn.ssh_con, keymanager.load_fingerprint())
         conn.extend_to_sftp()
 
-        main_window = MainWindow(conn, config)
-        main_window.open()
+        # Compressor.compress_folder(conn, config.webserver[0])
+        Compressor.check_dir_exists(conn, "/var/www/html")
 
     except KeyboardInterrupt as kbi_exception:
         kbi_handler = KeyboardInterruptHandler(kbi_exception)
