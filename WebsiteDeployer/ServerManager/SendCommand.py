@@ -1,13 +1,13 @@
-from ServerManager.Connection import Connection
+from ServerManager.SSHServer import SSHServerConnection
 from ErrorHandler import FatalErrorHandler, NonFatalErrorHandler
 import paramiko
 import logging
 
 
-def execute_command(conn: Connection, command: str):
+def execute_command(conn: SSHServerConnection, command: str):
     """
     Executes command on server side through SSH
-    :param conn: Connection instance
+    :param conn: SSHServerConnection instance
     :param command: command to execute on server side
     :return: command output
     """
