@@ -1,5 +1,6 @@
 from SetLogger import LogSetter
 from BackupSystem.BackupCreator import create_backup
+from checksum import CheckSumChecker
 from ConfigLoader import ConfigLoader
 from Models import *
 from ErrorHandler.FatalErrorHandler import *
@@ -22,10 +23,14 @@ if __name__ == "__main__":
             [Webserver, DiscordBot]  # Changed ConfigLoader to DeployerConfig
         )
 
+
+
         config = loader.load_configs()
 
-        menu = CLIMenu(config)
-        menu.main_menu()
+        config.webserver[0].connect()
+
+        checksum = CheckSumChecker(config.webserver[0].conn, config.webserver[0].local_folder, config.webserver[0].webserver_folder)
+        checksum.get_remote_files()
 
         # Compressor.compress_folder(conn, config.webserver[0])
         # Compressor.check_remote_dir_exists(conn, "/var/www/html")
