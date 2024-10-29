@@ -10,7 +10,7 @@ from .IntegrityChecker import check_backup_integrity
 
 def generate_file_suffix():
     """
-    Returns the current date and time in the format YYYY_MM_DD_HH_MM_SS_MS.
+    Returns the current date and time in the format YYYY_MM_DD_HH_MM_SS.
     """
     now = datetime.now()
     formatted_datetime = now.strftime("%Y_%m_%d_%H_%M_%S")
