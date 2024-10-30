@@ -19,16 +19,16 @@ class ConfigLoader:
             instances = {}
 
             subclasses = ConfigLoader.__subclasses__()
-            if len(subclasses) != len(self.config_files) or len(subclasses) != len(self.classes_parse_to):
+            if len(self.classes_parse_to) != len(self.config_files):
                 logging.error("Number of subclasses must match the number of config files and classes.")
                 raise Exception("Fatal error: cannot load configurations!")
 
             for i, subclass in enumerate(subclasses):
-                subloader = subclass(self.config_files[i], self.classes_parse_to[i])
-                res = subloader.load_config()
-                instances[self.classes_parse_to[i].__name__] = res  # Direct assignment instead of using update()
-
-                logging.debug(f"{self.classes_parse_to[i].__name__} configuration loaded.")
+                if i < len(self.config_files):
+                    subloader = subclass(self.config_files[i], self.classes_parse_to[i])
+                    res = subloader.load_config()
+                    instances[self.classes_parse_to[i].__name__] = res  # Direct assignment instead of using update()
+                    logging.debug(f"{self.classes_parse_to[i].__name__} configuration loaded.")
 
             # Create config object
             config = Config()
@@ -37,15 +37,16 @@ class ConfigLoader:
 
             return config
         except ValueError as ve:
-            FatalErrorHandler.FatalError(ve, "Fatal Value Error while loading and parsing configuration files.")
+            fatal_handler = FatalErrorHandler.FatalError(ve, "Fatal Value Error while loading and parsing configuration files.")
+            fatal_handler.display_error()
         except Exception as e:
-            FatalErrorHandler.FatalError(e, "Fatal Error while loading and parsing configuration files.")
-
+            fatal_handler = FatalErrorHandler.FatalError(e, "Fatal Error while loading and parsing configuration files.")
+            fatal_handler.display_error()
 
 class WebserverConfigLoader(ConfigLoader):
     def __init__(self, file_path: str, class_to_parse):
         super().__init__([file_path], [class_to_parse])  # Pass the file_path and class_to_parse
-        self.file_path = file_path
+        self.file_path = "config/webservers.json"
         self.class_to_parse = class_to_parse
 
     def load_config(self):
@@ -69,7 +70,7 @@ class WebserverConfigLoader(ConfigLoader):
 class DiscordBotConfigLoader(ConfigLoader):
     def __init__(self, file_path: str, class_to_parse):
         super().__init__([file_path], [class_to_parse])  # Pass the file_path and class_to_parse
-        self.file_path = file_path
+        self.file_path = "confif/discordbot.json"
         self.class_to_parse = class_to_parse
 
     def load_config(self):

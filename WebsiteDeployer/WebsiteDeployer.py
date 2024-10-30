@@ -19,8 +19,8 @@ if __name__ == "__main__":
 
         logging.debug("loading configurations...")
         loader = ConfigLoader(
-            ["config/webservers.json", "config/discordbot.json"],
-            [Webserver, DiscordBot]  # Changed ConfigLoader to DeployerConfig
+            ["config/webservers.json"], # , "config/discordbot.json"
+            [Webserver]  #, DiscordBot Changed ConfigLoader to DeployerConfig
         )
 
 
