@@ -30,14 +30,12 @@ if __name__ == "__main__":
         config = loader.load_configs()
 
         config.webserver[0].connect()
+        config.webserver[0].extend_to_sftp()
 
-        checksum = ChecksumMapper(config.webserver[0].conn, config.webserver[0].local_folder, config.webserver[0].webserver_folder)
+        # checksum = ChecksumMapper(config.webserver[0].conn, config.webserver[0].local_folder, config.webserver[0].webserver_folder)
 
-        print(checksum.remote_files_and_checksums)
-        print(checksum.local_files_and_checksums)
+        create_backup(webserver=config.webserver[0])
 
-        # Compressor.compress_folder(conn, config.webserver[0])
-        # Compressor.check_remote_dir_exists(conn, "/var/www/html")
 
     except KeyboardInterrupt as kbi_exception:
         kbi_handler = KeyboardInterruptHandler(kbi_exception)

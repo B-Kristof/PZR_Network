@@ -4,6 +4,7 @@ import os
 from Models import SSHServerConnection
 from ServerManager.SendCommand import execute_command
 
+
 class ChecksumMapper:
     def __init__(self, conn: SSHServerConnection, local_project_root: str, remote_project_root: str):
         self.conn = conn
@@ -37,8 +38,7 @@ class ChecksumMapper:
                     element = {
                         "relative_file_path": os.path.normpath(full_path.removeprefix(self.local_project_root)),
                         "file": full_path,
-                        "checksum": "",
-                        "delta": False
+                        "checksum": ""
                     }
                     files.append(element)
 
@@ -58,8 +58,7 @@ class ChecksumMapper:
                 element = {
                     "relative_file_path": os.path.normpath(filename.removeprefix(self.remote_project_root)),
                     "file": filename,
-                    "checksum": "",
-                    "delta": False
+                    "checksum": ""
                     }
                 files.append(element)
         return files
@@ -91,14 +90,19 @@ class ChecksumMapper:
             return ""
 
     def generate_local_checksums(self):
-        logging.info("Generating MD5 checksums on locally...")
+        logging.info("Generating MD5 checksums locally...")
         for i, element in enumerate(self.local_files_and_checksums):
             self.local_files_and_checksums[i]["checksum"] = self.generate_local_checksum(self.local_files_and_checksums[i]["file"])
 
     def generate_remote_checksums(self):
         logging.info("Generating MD5 checksums on remote server...")
         for i, element in enumerate(self.remote_files_and_checksums):
-            self.remote_files_and_checksums[i]["checksum"] = self.generate_remote_checksum(self.remote_files_and_checksums[i]["file"])
+            self.remote_files_and_checksums[i]["checksum"] = self.generate_remote_checksum(
+                self.remote_files_and_checksums[i]["file"]
+            )
 
     def delta_calculator(self):
-        pass
+        logging.info("Calculating deltas...")
+        local_set = {(file["relative_file_path"], file["checksum"]) for file in self.local_files_and_checksums}
+        remote_set = {(file["relative_file_path"], file["checksum"]) for file in self.remote_files_and_checksums}
+        only_in_local = local_set - remote_set

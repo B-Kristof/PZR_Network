@@ -1,3 +1,4 @@
+import logging
 import os
 import sys
 from datetime import datetime
@@ -15,6 +16,7 @@ def generate_file_suffix():
     now = datetime.now()
     formatted_datetime = now.strftime("%Y_%m_%d_%H_%M_%S")
     return "_" + str(formatted_datetime) + ".tar"
+
 
 def ensure_path_and_check_folders(path):
     """
@@ -51,9 +53,12 @@ def create_backup(webserver: Webserver):
     :return: True if backup created, False otherwise
     """
     try:
+        if not webserver.sftp_con:
+            logging.error(f"No SFTP connection found! ({webserver.ip_address})")
+            prompt_skip_backup()
         compress_res = compress_folder(webserver)
 
-        folders = webserver.local_backup_path.split("/")
+        folders = webserver.local_backup_path.split("\\")
         folders.remove(folders[-1])
         local_backup_folder = "\\".join(map(str, folders))
         local_backup_file_name = webserver.local_backup_path.removesuffix(".tar") + generate_file_suffix()
