@@ -1,58 +1,104 @@
+import hashlib
 import logging
 import os
 from Models import SSHServerConnection
 from ServerManager.SendCommand import execute_command
-import xxhash
 
-class CheckSumChecker:
+class ChecksumMapper:
     def __init__(self, conn: SSHServerConnection, local_project_root: str, remote_project_root: str):
         self.conn = conn
         self.local_project_root = local_project_root
         self.remote_project_root = remote_project_root
         self.local_files_and_checksums = self.get_local_files()
         self.remote_files_and_checksums = self.get_remote_files()
+        self.generate_local_checksums()
+        self.generate_remote_checksums()
+        logging.debug("Checksum mapper ready.")
 
+    @classmethod
+    def check_if_folder_blacklisted(cls, file_path, folder_blacklist: list):
+        for b_folder in folder_blacklist:
+            if b_folder in file_path.split("\\") or b_folder in file_path.split("/"):
+                return True
+
+        return False
 
     def get_local_files(self):
+        folder_blacklist = [
+            ".git",
+            "__pycache__",
+            ".idea"
+        ]
         files = []
         for root, _, filenames in os.walk(self.local_project_root):
             for filename in filenames:
-                element = {
-                    "file": filename,
-                    "checksum": ""
-                }
-                files.append(element)
+                full_path = os.path.join(root, filename)
+                if not self.check_if_folder_blacklisted(full_path, folder_blacklist):
+                    element = {
+                        "relative_file_path": os.path.normpath(full_path.removeprefix(self.local_project_root)),
+                        "file": full_path,
+                        "checksum": "",
+                        "delta": False
+                    }
+                    files.append(element)
 
         return files
 
     def get_remote_files(self):
+        folder_blacklist = [
+            ".git",
+            "__pycache__",
+            ".idea"
+        ]
         files = []
+
         out = execute_command(conn=self.conn, command=f"find {self.remote_project_root} -type f")
-        for filename in out.split():
-            element = {
-                "file": filename,
-                "checksum": ""
-                }
-            files.append(element)
-        return out.split()
+        for filename in out.splitlines():
+            if not self.check_if_folder_blacklisted(filename, folder_blacklist):
+                element = {
+                    "relative_file_path": os.path.normpath(filename.removeprefix(self.remote_project_root)),
+                    "file": filename,
+                    "checksum": "",
+                    "delta": False
+                    }
+                files.append(element)
+        return files
 
     @classmethod
     def generate_local_checksum(cls, file_path: str):
-        hash_xxhash = xxhash.xxh64()  # You can use xxh32 or xxh128 as well, depending on your needs
+        try:
+            md5_hash = hashlib.md5()
+            with open(file_path, "rb") as file:
+                while True:
+                    data = file.read(65536)  # Read the file in 64K chunks
+                    if not data:
+                        break
+                    md5_hash.update(data)
 
-        with open(file_path, "rb") as file:
-            for chunk in iter(lambda: file.read(4096), b""):  # Read in chunks to handle large files
-                hash_xxhash.update(chunk)
-
-        return hash_xxhash.hexdigest()
+            return md5_hash.hexdigest()
+        except Exception as e:
+            logging.warning(f"Cannot calculate local checksum for {file_path}: {str(e)}")
+            return ""
 
     def generate_remote_checksum(self, file_path: str):
-        return execute_command(self.conn, "xxhsum -H3 /path/to/your/file | awk '{print $1}'")
+        try:
+            # Check if md5sum installed on remote server
+            res = execute_command(conn=self.conn, command='md5sum "' + file_path + '"', mute_logs=True)
+            return res.split()[0]
+
+        except Exception as e:
+            logging.warning(f"Cannot calculate remote checksum for {file_path}: {str(e)}")
+            return ""
 
     def generate_local_checksums(self):
-        for element in self.local_files_and_checksums:
-            element["checksum"] = self.generate_local_checksum(element["file"])
+        logging.info("Generating MD5 checksums on locally...")
+        for i, element in enumerate(self.local_files_and_checksums):
+            self.local_files_and_checksums[i]["checksum"] = self.generate_local_checksum(self.local_files_and_checksums[i]["file"])
 
     def generate_remote_checksums(self):
-        for element in self.remote_files_and_checksums:
-            element["checksum"] = self.generate_remote_checksum(element["file"])
+        logging.info("Generating MD5 checksums on remote server...")
+        for i, element in enumerate(self.remote_files_and_checksums):
+            self.remote_files_and_checksums[i]["checksum"] = self.generate_remote_checksum(self.remote_files_and_checksums[i]["file"])
+
+    def delta_calculator(self):
+        pass

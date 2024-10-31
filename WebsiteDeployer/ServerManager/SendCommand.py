@@ -4,16 +4,17 @@ import paramiko
 import logging
 
 
-def execute_command(conn: SSHServerConnection, command: str):
+def execute_command(conn: SSHServerConnection, command: str, mute_logs=False):
     """
     Executes command on server side through SSH
+    :param mute_logs: Mute logging messages if True
     :param conn: SSHServerConnection instance
     :param command: command to execute on server side
     :return: command output
     """
     try:
-
-        logging.debug("Executing command: " + command)
+        if not mute_logs:
+            logging.debug("Executing command: " + command)
 
         # Execute command
         stdin, stdout, stderr = conn.ssh_con.exec_command(command)
@@ -23,7 +24,8 @@ def execute_command(conn: SSHServerConnection, command: str):
 
         # Success (Return code zero)
         if command_return_code == 0:
-            logging.debug("Command successfully executed with exit code 0.")
+            if not mute_logs:
+                logging.debug("Command successfully executed with exit code 0.")
             # return output as string
             return stdout.read().decode()
 
