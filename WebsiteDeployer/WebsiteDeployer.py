@@ -1,14 +1,10 @@
-from tabnanny import check
-
 from SetLogger import LogSetter
 from BackupSystem.BackupCreator import create_backup
-from checksum import ChecksumMapper
 from ConfigLoader import ConfigLoader
 from Models import *
 from ErrorHandler.FatalErrorHandler import *
 from ErrorHandler.KeyboardInterruptHandler import *
 from ErrorHandler import CleanUpHandler
-from cli import CLIMenu
 
 if __name__ == "__main__":
     conn, config, sshserver = None, None, None
@@ -25,16 +21,10 @@ if __name__ == "__main__":
             [Webserver]  #, DiscordBot Changed ConfigLoader to DeployerConfig
         )
 
-
-
         config = loader.load_configs()
-
         config.webserver[0].connect()
-        config.webserver[0].extend_to_sftp()
-
-        # checksum = ChecksumMapper(config.webserver[0].conn, config.webserver[0].local_folder, config.webserver[0].webserver_folder)
-
-        create_backup(webserver=config.webserver[0])
+        config.webserver[0].map_files()
+        print(config.webserver[0].deployment_files)
 
 
     except KeyboardInterrupt as kbi_exception:

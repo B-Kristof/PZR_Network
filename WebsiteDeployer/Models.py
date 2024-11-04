@@ -4,6 +4,7 @@ import os
 import socket
 from KeyManager.KeyManager import KeyManager
 from ServerManager.SSHServer import SSHServerConnection
+from Mapper.Mapper import map_and_filter_files
 
 
 class DiscordBot:
@@ -20,7 +21,8 @@ class Deployer:
 
 class Webserver:
     def __init__(self, url: str, ip_address: str, role: str, state: bool, last_answer: datetime.datetime,
-                 webserver_folder: str, remote_backup_path: str, local_backup_path: str, local_folder: str, ssh_key_file: str):
+                 webserver_folder: str, remote_backup_path: str, local_backup_path: str, local_folder: str,
+                 ssh_key_file: str, specific_extensions_blacklist: list, specific_folders_blacklist: list):
         self.url = url
         self.ip_address = ip_address
         self.role = role
@@ -31,8 +33,11 @@ class Webserver:
         self.local_backup_path = local_backup_path
         self.local_folder = local_folder
         self.ssh_key_file = ssh_key_file
-        self.conn = None # False if offline
-        self.sftp_con = None # False if offline
+        self.specific_extensions_blacklist = specific_extensions_blacklist
+        self.specific_folders_blacklist = specific_folders_blacklist
+        self.conn = None  # False if offline
+        self.sftp_con = None  # False if offline
+        self.deployment_files = None
 
     def connect(self):
         """
@@ -84,3 +89,6 @@ class Webserver:
         :param new_state: New state
         """
         self.state = new_state
+
+    def map_files(self):
+        map_and_filter_files(self)

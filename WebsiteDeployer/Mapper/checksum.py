@@ -14,7 +14,7 @@ class ChecksumMapper:
         self.remote_files_and_checksums = self.get_remote_files()
         self.generate_local_checksums()
         self.generate_remote_checksums()
-        logging.debug("Checksum mapper ready.")
+        logging.debug("Checksums generated.")
 
     @classmethod
     def check_if_folder_blacklisted(cls, file_path, folder_blacklist: list):
@@ -105,4 +105,6 @@ class ChecksumMapper:
         logging.info("Calculating deltas...")
         local_set = {(file["relative_file_path"], file["checksum"]) for file in self.local_files_and_checksums}
         remote_set = {(file["relative_file_path"], file["checksum"]) for file in self.remote_files_and_checksums}
-        only_in_local = local_set - remote_set
+        delta = local_set - remote_set
+        return [file for file in self.local_files_and_checksums if
+                (file["relative_file_path"], file["checksum"]) in delta]
