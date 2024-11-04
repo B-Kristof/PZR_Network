@@ -17,7 +17,6 @@
     color: white;
 }
 
-
 .vertical_fourth .profile-container {
     position: relative;
     top: 0;
@@ -30,6 +29,7 @@
     padding-bottom: 10vh;
     background-image: url(../images/bg/members_bg.jpg);
     background-size: cover;
+    transition: max-height 0.5s ease;
 }
 
 /* Márk Profile */
@@ -46,38 +46,13 @@
     cursor: pointer;
 }
 
-
-
-.vertical_fourth .profile-container .mark_profile::after {
-    content: 'Achievements';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    background-color: rgb(146, 12, 12);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    letter-spacing: 3px;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    z-index: 3; 
+.vertical_fourth .profile-container .mark_profile.expanded {
+    height: 70vh; /* Set a large enough value to fit content when expanded */
+}
+    .vertical_fourth .profile-container .mark_profile.collapsed {
+    height: 25vh; /* Set to initial height for collapsed view */
 }
 
-.vertical_fourth .profile-container .mark_profile:hover::after {
-    opacity: 1;
-}
-
-.vertical_fourth .profile-container .mark_profile > * {
-    transition: filter 0.4s ease-in-out;
-}
-
-.vertical_fourth .profile-container .mark_profile:hover > * {
-    filter: blur(5px) brightness(60%);
-}
 
 
 
@@ -115,6 +90,13 @@
     cursor: pointer;
 }
 
+.vertical_fourth .profile-container .martin_profile.expanded {
+    height: 70vh; /* Set a large enough value to fit content when expanded */
+}
+    .vertical_fourth .profile-container .martin_profile.collapsed {
+    height: 25vh; /* Set to initial height for collapsed view */
+}
+
 .vertical_fourth .profile-container .martin_profile::after {
     content: 'Achievements';
     position: absolute;
@@ -133,22 +115,6 @@
     z-index: 3; 
 }
 
-.vertical_fourth .profile-container .martin_profile:hover::after {
-    opacity: 1;
-}
-
-.vertical_fourth .profile-container .martin_profile > * {
-    transition: filter 0.4s ease-in-out;
-}
-
-.vertical_fourth .profile-container .martin_profile:hover > * {
-    filter: blur(5px) brightness(60%);
-}
-
-.vertical_fourth .profile-container .martin_profile > * {
-    position: relative;
-    z-index: 2; 
-}
 
 .vertical_fourth .profile-container .martin_profile::before {
     content: '';
