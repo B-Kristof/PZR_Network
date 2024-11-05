@@ -1,0 +1,122 @@
+/* VERTICAL FOURTH PAGE (MEMBERS) */
+
+#members {
+    min-height: fit-content;
+    margin-top: -7vh; /* Overlap the iframe video above */
+}
+
+#members section{
+    z-index: auto;
+    background-color: black;
+}
+
+.vertical_fourth {
+    min-height: fit-content;
+    position: relative;
+    z-index: 10;
+    color: white;
+}
+
+.vertical_fourth .profile-container {
+    top: 0;
+    padding-right: 50px;
+    padding-left: 50px;
+    display: flex;
+    gap: 50px;
+    align-content: center;
+    min-height: fit-content;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    background-image: url(../images/bg/members_bg.jpg);
+    background-size: cover;
+    transition: max-height 0.5s ease;
+}
+
+/* Márk Profile */
+
+.vertical_fourth .profile-container .mark_profile {
+    width: 100%;
+    border: solid 1px rgb(43, 43, 43);
+    background-color: rgba(0, 0, 0, 0.884);
+    margin-top: 50px;
+    min-height: 60vh;
+    display: grid;
+    border-radius: 40px;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+/* Márk Profile */
+
+.vertical_fourth .profile-container .martin_profile {
+    width: 100%;
+    border: solid 1px rgb(43, 43, 43);
+    background-color: rgba(0, 0, 0, 0.884);
+    margin-top: 50px;
+    min-height: 60vh;
+    display: grid;
+    border-radius: 40px;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.vertical_fourth .profile-container .profile-picture{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: transparent;
+    height: 60%;
+    transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in;
+}
+
+.vertical_fourth .profile-container .profile-picture img{
+    width: auto;
+    height: 300px;
+    border: solid 1px rgb(48, 48, 48);
+    border-radius: 50%
+}
+
+.vertical_fourth .profile-container .description{
+    background-color: transparent;
+    margin: 15px;
+    overflow-y: auto;
+    height: 40%;
+    color: white;
+    overflow-y: visible;
+    font-family: Tahoma, sans-serif;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* Hover effect for profile container */
+
+.vertical_fourth .profile-container .mark_profile:hover,
+.vertical_fourth .profile-container .martin_profile:hover {
+    transform: scale(1.02); /* Slightly enlarge the profile container */
+}
+
+.vertical_fourth .profile-container .mark_profile:hover .profile-picture,
+.vertical_fourth .profile-container .martin_profile:hover .profile-picture {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    width: 100%;
+    height: 150px;
+    transition: all 0.3s ease-in-out;
+}
+
+.vertical_fourth .profile-container .mark_profile:hover .profile-picture img,
+.vertical_fourth .profile-container .martin_profile:hover .profile-picture img {
+    width: auto; /* Fit the new smaller profile picture container */
+    height: 100%;
+    border-radius: 50%;
+}
+
+.vertical_fourth .profile-container .mark_profile:hover .description,
+.vertical_fourth .profile-container .martin_profile:hover .description {
+    padding-top: 160px; /* Adjust for profile picture placement */
+    transition: padding-top 0.3s ease-in-out;
+}
