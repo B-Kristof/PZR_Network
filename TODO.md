@@ -1,3 +1,12 @@
+# Main Page
+
+### Todo
+- [ ] Modify intext on Google index
+
+### In Progress
+
+### Done ✓
+
 # ESPORT:
 
 ### Todo
