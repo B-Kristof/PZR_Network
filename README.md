@@ -23,7 +23,7 @@ This repository, **PZR_Network**, houses three interconnected websites:
 
 ## 🛠️ Features
 
-### 📌 PZR ESPORT
+### 🎮 PZR ESPORT
 - **Team Profiles**: Detailed profiles with achievements and linked social media accounts.  
 - **Media Section**: Game galleries, embedded streams, and event videos.  
 - **Sponsors Page**: Featuring team supporters with links to their sites.  
