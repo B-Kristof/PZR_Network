@@ -1,139 +1,122 @@
-# Main Page
+# 🛠️ PZR Websites TODO List
 
-### Todo
+---
+
+## 🌐 **Main Page**
+
+### 📝 Todo
 - [ ] Modify intext on Google index
 
-### In Progress
+### 🔄 In Progress
 
-### Done ✓
+### ✅ Done
 
-# ESPORT:
+---
 
-### Todo
+## 🎮 **ESPORT**
 
+### 📝 Todo
 - [ ] Profile for each member
-    - [ ] Link social medias for each member (Instagram, Youtube, Twitch, etc.)
+    - [ ] Link social media accounts (Instagram, YouTube, Twitch, etc.)
     - [ ] Achievements of each member
 - [ ] Mobile background for Driver profiles
 - [ ] Better font for Driver profiles
 - [ ] Translate "Subscribe" to Hungarian (Media section)
-- [ ] Redirecthandler -> write in apache log
-    - [ ] Filter for valid records 
+- [ ] Redirect handler -> Write logs in Apache
+    - [ ] Filter for valid records
 
-### In Progress
-
+### 🔄 In Progress
 - [ ] Website deployer (Python script)
 - [ ] Website Monitor (Python script)
     - [ ] Offline state alert system
-    - [ ] GUI
+    - [ ] GUI interface
 
-
-### Done ✓
+### ✅ Done
 - [x] State UML diagram
-- [x] About (vertical second)
+- [x] About section (vertical second)
 - [x] SSL certificate
-- [x]  Sponsors (vertical sixth)
-    - [x] add Sponsors to top menu
-    - [x] Link sponsor's website to logo
+- [x] Sponsors (vertical sixth)
+    - [x] Added sponsors to the top menu
+    - [x] Linked sponsor logos to their websites
 - [x] Media.html (vertical fifth)
-    - [x] gallery with ingame images
-    - [x] embedded Youtube and Twitch links
-    - [x] move footer to vertical_seventh
-- [x] mobile optimized CSS for home.html
-- [x] fix iframe video on mobile
+    - [x] Gallery with in-game images
+    - [x] Embedded YouTube and Twitch links
+    - [x] Footer moved to vertical seventh
+- [x] Mobile-optimized CSS for home.html
+- [x] Fixed iframe video on mobile
 - [x] Language switch (HU/EN)
 - [x] RedirectionHandler.js
-    - [x] Count visits on social medias and Partner websites
-    - [x] Test for vulnerabilities (DDOS/XSS/Open Redirect)
-- [x] fix background size for desktop
-- [x] members transparent images
-- [x] Home background for mobile
-- [x] member descriptions
+    - [x] Counted visits to social media and partner websites
+    - [x] Tested for vulnerabilities (DDOS/XSS/Open Redirect)
+- [x] Desktop background fixes
+- [x] Transparent member images
+- [x] Mobile-friendly home background
+- [x] Member descriptions
 
+---
 
-# URBEX:
+## 🏚️ **URBEX**
 
-### Todo
-- [ ] Rang System
-    - [ ] user: level 1
-        - [ ] add location
-        - [ ] cannot generate invitation
-    - [ ] member: level 2
-        - [ ] a user become a member if he add 5 VISITED locations -> desc, links
-        - [ ] can generate 2 invitation codes (? after all locations validated ?) 
-    - [ ] explorer: level 3
-        - [ ] a user become an explorer if he add 10 VISITED locations, and 10 TARGET locations -> desc, links
-        - [ ] can generate any invitation codes (? after all locations validated ?) 
-    - [ ] admin: level n
-        - [ ] update, remove, add location
-        - [ ] can update other user's location
-        - [ ] ban, pardon user, member
-    - [ ] DEV: level n + 1
-        - [ ] all admin rights
-        - [ ] ban / pardon / add admin, user, member
-
-- [ ] My Profile improvemenets
-    - [ ] username
-    - [ ] rang
-    - [ ] added visited location count
-    - [ ] added target location count
-
-- [ ] SSL Certificate
-    
-- [ ] ÁSZF / Terms and Conditions
-
-- [ ] Basic informations and tips
-    - [ ] Urbex in general
+### 📝 Todo
+- [ ] **Rank System**
+    - [ ] **Level 1 - User**: Add locations but cannot generate invitations.
+    - [ ] **Level 2 - Member**: Add 5 visited locations to level up and generate 2 invitations.
+    - [ ] **Level 3 - Explorer**: Add 10 visited and 10 target locations to level up; unlimited invitations after validation.
+    - [ ] **Admin**: Manage locations, ban/pardon users, update other users' locations.
+    - [ ] **DEV**: All admin rights, plus manage admins.
+- [ ] **My Profile Improvements**
+    - [ ] Show username, rank, visited location count, and target location count.
+- [ ] Add SSL certificate
+- [ ] **Terms and Conditions** (ÁSZF)
+- [ ] Add basic information and tips:
+    - [ ] General Urbex overview
     - [ ] Safety
     - [ ] Equipment
     - [ ] Tips
-
 - [ ] Restructure Locations menu
-    - [ ] All locations (No visited locations)
-
- - [ ] User can mark location as "Visited"
-     - [ ] Modify Location model
-     - [ ] Modify database -> add "visited_by" column -> store the user ID of the users who visited
-     - [ ] Fix map display (red and blue marker)
-     - [ ] Delete visited_locations.json
-     - [ ] Fix js code (do not load visited_locations.json)
-
+    - [ ] Add "All locations" (excluding visited locations).
+- [ ] Enable marking locations as "Visited"
+    - [ ] Update location model and database (add `visited_by` column).
+    - [ ] Replace `visited_locations.json` with database integration.
+    - [ ] Update JS for map markers (red for unvisited, blue for visited).
 - [ ] Store locations in a database
+- [ ] Add the ability to download archived images (RAR/ZIP) of locations
+- [ ] Add `robots.txt` to block Google indexing
+- [ ] Location "Flags" (e.g., CCTV, Guard dogs, Alarms, Collapsing structures, etc.)
+- [ ] Improved gallery view
+- [ ] Add location types (Residential, Industrial, Public Service, Recreational, Military, Historical)
 
-- [ ] Download archived (rar/zip) images of a location
+### 🔄 In Progress
 
-- [ ] robots.txt -> Avoid indexing by Google
+### ✅ Done
 
-- [ ] Location "flags" -> CCTV, Guard, Guard dog(s), Alarm system, Risk of collapse, Still water, Active demolotion, Squatter(s), Active electricity / Risk of electric shock, black mold, Partly Occupied Building, hazardous materials, other (provide description)
+---
 
-- [ ] Improved Gallery view
+## 🔒 **Members Only**
 
-- [ ] ? Location type ? -> Residential (House, Apartment etc.), Industrial (Factories, Warehouses etc.), Public Service (Hospitals, Offices, Aslyiums, Fire / Police stations, School etc), Recreational (Amusement parks, Sport Arenas, Cinemas), Military or Historical (Bunkers, Castles, Military bases etc)
-      
-### In Progress
+### 📝 Todo
+- [ ] Disable page indexing for search engines
 
-### Done ✓
+### 🔄 In Progress
 
-# Members Only
+### ✅ Done
 
-### Todo
+---
 
-- [ ] Disable page indexing
+## 📦 **WebsiteDeployer**
 
-### In Progress
+### 📝 Todo
+- [ ] Add a GUI interface
+- [ ] Discord Bot configuration
+- [ ] CLI-based monitor tool
 
-### Done ✓
+### 🔄 In Progress
 
-# WebsiteDeployer
+### ✅ Done
 
-### Todo
+---
 
-- [ ] GUI
-
-- [ ] DiscordBotConfig
-
-- [ ] CLI based Monitor
-
-### In Progress
-
-### Done ✓
+### Legend:
+- **📝 Todo**: Planned tasks to work on
+- **🔄 In Progress**: Actively being developed
+- **✅ Done**: Completed features and fixes
