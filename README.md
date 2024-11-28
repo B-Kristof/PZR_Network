@@ -43,7 +43,7 @@ This repository, **PZR_Network**, houses three interconnected websites:
 
 - **Frontend**: HTML, CSS, JavaScript, PHP
 - **Backend**: PHP
-- **Deployment**: Custom Python-based Website Deployer
+- **Deployment**: Automatic Custom Python-based Website Deployer
 - **Hosting**: Apache/Nginx on Linux
 
 ---
