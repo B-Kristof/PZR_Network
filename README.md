@@ -51,7 +51,7 @@ This repository, **PZR_Network**, houses three interconnected websites:
 ## 👥 Contributors
 
 This is a **private project** maintained by the PZR Team.  
-If you have suggestions or find issues, feel free to contact us directly.
+If you have suggestions or find issues, feel free to contact us directly.  
 External contributions are currently not accepted.
 
 ---
