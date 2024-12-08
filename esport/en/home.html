@@ -4,17 +4,16 @@
     <title>PZR Esport</title>
     <!-- Favicon -->
     <link rel="icon" href="../images/logo/favicon.ico" type="image/x-icon" />
-<link rel="shortcut icon" href="../images/logo/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="../images/logo/favicon.ico" type="image/x-icon" />
     <!-- Desktop CSS -->
     <link rel="stylesheet" href="../styles/home.css" media="screen and (min-device-width: 767px)">
-    <link rel="stylesheet" href="../styles/vertical-fourth.css" media="screen and (min-device-width: 767px)">
+    <link rel="stylesheet" href="../styles/vertical-fourth2.css" media="screen and (min-device-width: 767px)">
     <link rel="stylesheet" href="../styles/vertical-sixth.css" media="screen and (min-device-width: 767px)">
     <link rel="stylesheet" href="../styles/vertical-fifth.css" media="screen and (min-device-width: 767px)">
     <link rel="stylesheet" href="../styles/top_menu_home.css" media="screen and (min-device-width: 767px)">
     <link rel="stylesheet" href="../styles/language_switch.css">
 
     <!-- Mobile CSS -->
-    <link rel="stylesheet" href="styles/normalize.css" media="screen and (max-device-width: 767px)" >
     <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 767px)" href="../styles/home_mobile.css"/>
 
     <!-- Custom Font from Google API -->
@@ -97,24 +96,88 @@
       <div class="vertical_fourth">
         
         <div class="profile-container">
-          <a href="members/martin.html">
-            <div class="martin_profile">
-              <div class="profile-picture"><img src="../images/members/martin_alt.png"></div>
-              <div class="description"><p>" My name is Martin Mózes, and my passion for racing began in childhood with the 2005 Formula 1 game. In 2014, I successfully swapped my keyboard for a steering wheel, marking the first milestone in my career. I participated in my first simulator race in 2017, which I managed to win. From that point on, it became a hobby and blossomed into a love. Since then, I have taken part in hundreds of races, both individually and as a team, all of which have been successful. Today, it has evolved into a passion, and I cannot settle for anything less than the top of the podium. "</p></div>
-            </div>
-          </a>
-          <a href="members/mark.html">
-            <div class="mark_profile">
-              <div class="profile-picture"><img src="../images/members/mark_alt.png"></div>
-              <div class="description">
-                <div><p>" My name is Márk Nagy, and I am part of the PZR Esport Team's simulator team. From a young age, I had the opportunity to play at home with a computer steering wheel. Even then, I felt that this world was meant for me. However, it was only in 2018 that I reached the level to participate in serious online competitions, whether individually or as part of a team. I now treat this activity as more than just a hobby, and since then, I have completed hundreds of races! "</p></div>
+            <div class="martin_profile" id="martin_profile" onclick="toggleProfile(this, 'martin')">
+              <div class="single-profile-container" id="martin_inner_profile">
+                <div class="profile-picture"  id="martin_profile_picture"><img src="../images/members/martin_alt.png"></div>
+                <div class="description" id="martin_desc">
+                  <div class="quote-container">
+                    <div class="quote-mark-start">"</div>
+                    <p>My name is Martin Mózes, and my passion for racing began in childhood with the 2005 Formula 1 game. In 2014, I successfully swapped my keyboard for a steering wheel, marking the first milestone in my career. I participated in my first simulator race in 2017, which I managed to win. From that point on, it became a hobby and blossomed into a love. Since then, I have taken part in hundreds of races, both individually and as a team, all of which have been successful. Today, it has evolved into a passion, and I cannot settle for anything less than the top of the podium.</p>
+                    <div class="quote-mark-end">"</div>
+                  </div>
+                </div>
+                <div class="achievements" id="martin_achievements">
+                  <p>
+                    <h3>Eredményeim:</h3>
+                    <ul>
+                      <li>Hyp-r zone, Formula 1 Renault championship (LAN) 1. place</li>
+                      <li>Hyp-r zone, Renault Endurance 1. place</li>
+                      <li>HVML, Raceroom GTR1 1. place</li>
+                      <li>HVML, Raceroom WTCR 2021 1. place</li>
+                      <li>HVML, Raceroom DTM 2020 1. place</li>
+                      <li>HVML, Raceroom GT2 1. place</li>
+                      <li>HVML, Assetto Corsa Vintage GT 1. place</li>
+                      <li>HVML, Assetto Corsa DTM 2018 1. place</li>
+                      <li>HVML, Assetto Corsa Virtual TCR 2. place</li>
+                      <li>HVML, Assetto Corsa Competizione Ferrari 488 Cup 3. place</li>
+                      <li>Raceroom Cupra eSport Top 50</li>
+                    </ul>
+                  </p>
+                </div>
               </div>
             </div>
-          </a>
+            <div class="mark_profile" id="mark_profile">
+              <div class="single-profile-container" id="mark_inner_profile">
+              <div class="profile-picture" id="mark_profile_picture"><img src="../images/members/mark_alt.png"></div>
+              <div class="description" id="mark_desc">
+                <div class="quote-container">
+                  <div class="quote-mark-start">"</div>
+                  <p>My name is Márk Nagy, and I am part of the PZR Esport Team's simulator team. From a young age, I had the opportunity to play at home with a computer steering wheel. Even then, I felt that this world was meant for me. However, it was only in 2018 that I reached the level to participate in serious online competitions, whether individually or as part of a team. I now treat this activity as more than just a hobby, and since then, I have completed hundreds of races!</p>
+                <div class="quote-mark-end">"</div>
+              </div>
+            </div>
+              <div class="achievements" id="mark_achievements">
+                <p>
+                  <h3>Eredményeim:</h3>
+                  <ul>
+                    <li>Hyp-r zone, Renault F1 Formula 2 Championship (LAN) 3. place </li>
+                    <li>Hype-r, Cooler master & Audio-Technica Renault GT Endurance 1. place</li>
+                    <li>HVML, BMW M2 Cup Championship 2. placeezet</li>
+                    <li>HVML, RaceRoom DTM 2020 2. place</li>
+                    <li>HVML, Assetto Corsa Vintage GT 2. place</li>
+                    <li>HVML, Assetto Corsa Vintage GT 2. place</li>
+                    <li>HVML, Porsche Cup championship 3. place</li>
+                  </ul>
+                </p>
+              </div>
+          </div>
+        </div>
+        <div class="csonor_profile" id="csonor_profile">
+            <div class="single-profile-container" id="csonor_inner_profile">
+            <div class="profile-picture" id="csonor_profile_picture"><img src="../images/members/csongor_alt.png"></div>
+            <div class="description" id="csonor_desc">
+                <div class="quote-container">
+                  <div class="quote-mark-start">"</div>
+                  <p>My name is Csongor Dobák, and I have been attracted to car racing games since childhood, whether it's arcade style or simulation. In 2016, I got my first serious racing wheel, a G27, which I still use for racing today. My first league race took place in 2017 in F1 2017, and since then, I have competed in many different games and simulators. Although I mainly treat racing as a hobby alongside university and work, I am still very dedicated to it. I have also taken my love for racing to real-life tracks, where I have earned several podium finishes in amateur go-kart races.</p>
+                <div class="quote-mark-end">"</div>
+              </div>
+            </div>
+              <div class="achievements" id="csonor_achievements">
+                <p>
+                  <h3>Eredményeim:</h3>
+                  <ul>
+                    <li>Karting365 2023 10-12. round 60+ 3. place</li>
+                    <li>Karting365 2023/24 winter cup 60+ 3. place</li>
+                    <li>HVML, DTM 3. place</li>
+                    <li>AOR F1 2018 split 6 1. place</li>
+                    <li>AOR F1 2019 split 6 1. place</li>
+                  </ul>
+                </p>
+              </div>
+            </div>
         </div>
       </div>
     </section>
-
     <section id="partners">
       <div class="vertical_fifth">
         <h1>Our partners</h1>
@@ -182,5 +245,6 @@
   </body>
 
   <script src="../js/home.js"></script>
+  <script src="../js/dynamic_profiles_en.js"></script>
 
 </html> 

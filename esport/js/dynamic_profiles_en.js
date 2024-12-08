@@ -28,7 +28,7 @@ document.getElementById('mark_profile').addEventListener('mouseenter', function(
     mark_achievements.style.display = "block";
     mark_profile_picture_div.style.display = "flex";
     mark_profile_picture_div.innerHTML += `
-      <div style="margin-left: 20px; font-size: 50px; display: flex; width: 100%;">Nagy Márk</div>
+      <div style="margin-left: 20px; font-size: 50px; display: flex; width: 100%;">Márk Nagy</div>
     `;
   }
 });
@@ -50,7 +50,7 @@ document.getElementById('martin_profile').addEventListener('mouseenter', functio
     this.querySelector('.description p').display = "none";
     martin_profile_picture_div.style.display = "flex";
     martin_profile_picture_div.innerHTML += `
-      <div style="margin-left: 20px; font-size: 45px; display: flex; width: 100%;">Mózes Martin</div>
+      <div style="margin-left: 20px; font-size: 45px; display: flex; width: 100%;">Martin Mózes</div>
     `;
   }
 });
@@ -69,7 +69,7 @@ document.getElementById('csonor_profile').addEventListener('mouseenter', functio
     this.querySelector('.description p').display = "none";
     csonor_profile_picture_div.style.display = "flex";
     csonor_profile_picture_div.innerHTML += `
-      <div style="margin-left: 20px; font-size: 45px; display: flex; width: 80%;">Dobák Csongor</div>
+      <div style="margin-left: 20px; font-size: 45px; display: flex; width: 80%;">Csongor Dobák</div>
     `;
   }
 });
