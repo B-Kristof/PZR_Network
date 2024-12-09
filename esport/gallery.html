@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="styles/gallery.css">
+    <link rel="stylesheet" href="styles/top_menu_home.css">
+</head>
+<body>
+    <!-- top menu -->
+    <div class="top_menu" id="top_menu">
+        <div class="menu-container">
+          <a href="/esport/home.html#home" class="menu-link">Főoldal</a>
+          <a href="/esport/home.html#about" class="menu-link">Rólunk</a>
+          <a href="/esport/home.html#members" class="menu-link">Versenyzők</a>
+          <a href="/esport/home.html#partners" class="menu-link">Partnerek</a>
+          <a href="/esport/home.html#media" class="menu-link">Média</a>
+          <a href="/esport/home.html#contacts" class="menu-link">Kapcsolat</a>
+        </div>
+      </div>
+    <div class="gallery"></div>
+    <div class="fullscreen" id="fullscreen">
+        <span class="close" id="close">&times;</span>
+        <img id="fullscreenImage" src="" alt="Full Image">
+    </div>
+
+    <script>
+        async function loadGallery() {
+            const gallery = document.querySelector('.gallery');
+            const top_menu = document.getElementById('top_menu');
+            const response = await fetch('utilities/get_images_for_gallery_page.php');
+            const images = await response.json();
+
+            images.forEach(src => {
+                const img = document.createElement('img');
+                img.src = "images/gallery/" + src;
+                img.alt = "Gallery Image";
+                img.addEventListener('click', () => openFullscreen(src));
+                gallery.appendChild(img);
+            });
+        }
+
+        function openFullscreen(src) {
+            top_menu.style.display = "none";
+            const fullscreen = document.getElementById('fullscreen');
+            const fullscreenImage = document.getElementById('fullscreenImage');
+            fullscreenImage.src = "images/gallery/" + src;
+            fullscreen.classList.add('visible');
+        }
+
+        function closeFullscreen() {
+            const fullscreen = document.getElementById('fullscreen');
+            fullscreen.classList.remove('visible');
+            top_menu.style.display = "inline-flex";
+        }
+
+        document.getElementById('close').addEventListener('click', closeFullscreen);
+
+        window.onload = loadGallery;
+    </script>
+</body>
+</html>
