@@ -19,12 +19,11 @@
 - [ ] Mobile background for Driver profiles
 - [ ] Redirect handler -> Write logs in Apache
     - [ ] Filter for valid records
+- [ ] Database integration for RedirectHandler
 
 ### 🔄 In Progress
-- [ ] Website deployer (Python script)
-- [ ] Website Monitor (Python script)
-    - [ ] Offline state alert system
-    - [ ] GUI interface
+
+- [ ] Gallery page
 
 ### ✅ Done
 - [x] State UML diagram
