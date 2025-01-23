@@ -1,0 +1,65 @@
+/* VERTICAL SEVENTH PAGE (CONTACTS)*/
+
+
+.vertical_seventh {
+    background-color: rgb(146, 12, 12); 
+    color: white;
+    min-height: fit-content;
+    display: grid;
+    justify-items: center;
+}
+
+
+.vertical_seventh .contact_container{
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+    justify-content: center;
+    text-align: center;
+}
+
+
+
+.vertical_seventh .contact_container h1{
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.vertical_seventh .contact_container p{
+    width: 100%;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.vertical_seventh .social-media-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    width: 200px;
+    margin: 0 auto;
+
+}
+
+.vertical_seventh .contact_container .social-media-container a img{
+    width: 50%;
+    height: auto;
+}
+
+
+.vertical_seventh .footer:before{
+    margin: 0 auto;
+    width: 80%;
+    content:' ';
+    display: block;
+    border: 0.5px solid white;
+}
+
+.vertical_seventh .footer{
+    text-align: center;
+    padding-top: 35px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    width: 100%;
+}
+

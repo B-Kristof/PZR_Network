@@ -1,0 +1,307 @@
+/* VERTICAL SIXTH PAGE (MEDIA) */
+
+#media section{
+    z-index: auto;
+    background-color: black;
+}
+
+.vertical_sixth{
+    margin-top: 5vh;
+    z-index: 10;
+    color: white;
+    min-height: fit-content;
+    display: grid;
+    align-content: center;
+    width: 100%;
+}
+
+/* Gallery */
+
+.vertical_sixth .gallery-container{
+    margin-bottom: 15vh;
+    display: grid;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(to bottom, rgb(0, 0, 0), 90%, rgb(43, 43, 43));
+}
+
+.vertical_sixth .gallery{
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 10% auto 10%;
+    height: 60%;
+    width: 100%;
+}
+
+
+
+.vertical_sixth .gallery-container .gallery #slideshow img{
+    width: 90%;
+    height: auto;
+    overflow-x: hidden;
+    border-radius: 20px;
+}
+
+.vertical_sixth .gallery-container .gallery #slideshow{
+    display: flex;
+    align-items: center;
+    transition: 0.3s ease-in-out;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.vertical_sixth .gallery-container .gallery #slideshow::after {
+    content: 'See more';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: rgb(82, 82, 82);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    letter-spacing: 3px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 3; 
+}
+
+.vertical_sixth .gallery-container .gallery #slideshow:hover::after {
+    opacity: 1;
+}
+
+.vertical_sixth .gallery-container .gallery #slideshow > * {
+    transition: filter 0.4s ease-in-out;
+}
+
+.vertical_sixth .gallery-container .gallery #slideshow:hover > * {
+    filter: brightness(38%);
+}
+
+
+
+.vertical_sixth .gallery-container .gallery #slideshow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    filter: blur(2px) brightness(0.5);
+    z-index: 1;
+}
+
+
+.vertical_sixth .gallery-container .gallery #slideshow > * {
+    position: relative;
+    z-index: 2; 
+}
+
+
+
+
+/* Hide all images by default */
+.slide {
+    width: 100%;
+    height: auto;
+    display: none;
+}
+
+
+/* Display the first image */
+.slide.active {
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    width: 100%;
+}
+
+/* Style for navigation buttons */
+.nav-button {
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    border: none;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+}
+
+
+.nav-button.prev {
+    font-size: 35px;
+}
+
+.nav-button.next {
+    font-size: 35px;
+}
+
+
+.nav-button:hover {
+    color: red;
+    background-color: rgba(17, 17, 17, 0.334);
+}
+
+
+/* Stream cards */
+
+.vertical_sixth .streams_container{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: rgb(43, 43, 43);
+    align-items: center;
+    justify-items: center
+}
+
+.vertical_sixth .stream_card{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    justify-content: center;
+}
+
+.vertical_sixth .stream_card.animate {
+    opacity: 1;
+}
+
+.vertical_sixth .stream_card.animate {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.vertical_sixth .stream_card .twitch-embed{
+    position: relative;
+    border-radius: 20px;
+    width: 98%;
+}
+
+.vertical_sixth .stream_card .twitch-embed iframe{
+    border-radius: 20px;
+    width: 100%;
+    height: 40vh;
+}
+
+.vertical_sixth .channel-container{
+    width: 90%;
+    height: fit-content;
+    padding: 2vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 35px;
+    display: flex;
+    background-color: rgb(24, 24, 27);
+}
+
+.vertical_sixth .channel-container .youtube_container{
+    display: grid;
+    width: 100%;
+    height: 100%;
+}
+
+/* Add animation to youtube_card */
+.vertical_sixth .youtube_card {
+    height: 40px;
+    margin-top: 10px;
+    border-radius: 15px;
+    display: flex;
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.vertical_sixth .youtube_card.animate {
+    opacity: 1;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+}
+
+.vertical_sixth .youtube_card.animate {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+
+.vertical_sixth .youtube_container h1{
+    font-family: Tahoma, sans-serif;
+    padding-bottom: 10px;
+    height: fit-content;
+    width: 100%;
+    margin: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-size: 14px;
+    text-align: center;
+    border-bottom: solid 1px rgb(54, 54, 54);
+}
+
+.vertical_sixth .youtube_container h1{
+    letter-spacing: 1px;
+    color: white;
+    font-size: 14px;
+}
+
+.vertical_sixth .youtube_card .yt_profile_img{
+    width: auto;
+    height: auto;
+}
+
+.vertical_sixth .youtube_card .yt_subscribe{
+    height: 100%;
+    width: 100%;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: rgb(146, 12, 12);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-decoration: none;
+    color: white;
+    font-family: Tahoma, Verdana, sans-serif;
+    letter-spacing: 1px;
+    font-size: 12px;
+}
+
+.vertical_sixth .youtube_card .yt_subscribe:hover{
+    background-color: red;
+    zoom: 1.1;
+    transition: 0.45s ease-in-out;
+}
+
+.vertical_sixth .youtube_card .yt_profile_img img{
+    width: auto;
+    height: 100%; 
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+}
+
+.vertical_sixth .streams_container .youtube_card .youtube-logo img{
+    width: 200px;
+    height: auto;
+}
+
+
+.vertical_sixth .youtube_card .youtube-embed{
+    border: 0; 
+    width: 80%;
+    height: 50px;
+    margin: 0 auto;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
