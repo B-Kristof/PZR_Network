@@ -102,7 +102,7 @@
       <div class="vertical_fourth">
         
         <div class="profile-container">
-            <div class="martin_profile" id="martin_profile" onclick="toggleProfile(this, 'martin')">
+            <div class="martin_profile" id="martin_profile">
               <div class="single-profile-container" id="martin_inner_profile">
                 <div class="profile-picture"  id="martin_profile_picture"><img src="images/members/martin_alt.png"></div>
                 <div class="description" id="martin_desc">
@@ -255,8 +255,17 @@
     </section>
 
   </body>
-
-  <script src="js/dynamic_profiles.js"></script>
+  <script>
+    if (screen.width > 767) {
+      const script = document.createElement('script');
+      script.src = 'js/dynamic_profiles.js';
+      document.head.appendChild(script); 
+    } else {
+      const script = document.createElement('script');
+      script.src = 'js/mobile/dynamic_profiles_mobile.js';
+      document.head.appendChild(script); 
+    }
+  </script>
   <script src="js/home.js"></script>
 
-</html> 
+</html>

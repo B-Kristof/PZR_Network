@@ -22,7 +22,7 @@
 
 @font-face {
     font-family: 'Garde';
-    src: url('Garde.ttf') format('truetype');
+    src: url('../Garde.ttf') format('truetype');
 }
 
 .garde-text {

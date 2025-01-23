@@ -2,7 +2,7 @@
 
 #members {
     min-height: fit-content;
-    margin-top: -7vh; /* Overlap the iframe video above */
+    margin-top: -18vh; /* Overlap the iframe video above */
 }
 
 #members section{
@@ -16,6 +16,8 @@
     z-index: 10;
     color: white;
     background-image: url(../../images/bg/members_bg.jpg);
+    background-position: center;
+    background-size:contain;
     width: 100%
 }
 
@@ -23,12 +25,12 @@
     top: 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 50px;
+    justify-content: space-evenly;
+    gap: 30px;
     align-content: center;
     min-height: fit-content;
-    padding-top: 10vh;
-    padding-bottom: 10vh;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
     background-size: cover;
     transition: max-height 0.5s ease;
 }
@@ -37,6 +39,7 @@
     display: grid;
     align-content: center;
     width: 100%;
+    
 }
 
 
@@ -46,10 +49,9 @@
 .vertical_fourth .profile-container .martin_profile,
 .vertical_fourth .profile-container .mark_profile,
 .vertical_fourth .profile-container .csonor_profile {
-    width: 100%;
+    width: 95%;
     position: relative;
-    margin-top: 50px;
-    min-height: 75vh;
+    height: 85vh;
     display: grid;
     border-radius: 40px;
     overflow: hidden;
@@ -85,11 +87,6 @@
     z-index: 1;
 }
 
-.vertical_fourth .profile-container .martin_profile .single-profile-container:hover::before,
-.vertical_fourth .profile-container .mark_profile .single-profile-container:hover::before,
-.vertical_fourth .profile-container .csonor_profile .single-profile-container:hover::before{
-    filter: blur(5px) brightness(0.3);
-}
 
 .vertical_fourth .profile-container .martin_profile .single-profile-container > *,
 .vertical_fourth .profile-container .mark_profile .single-profile-container > * ,
@@ -136,18 +133,16 @@
     overflow-y: auto;
     color: white;
     overflow-y: visible;
-    font-family: Tahoma, sans-serif;
     letter-spacing: 1px;
-    text-align: center;
-    font-size: 14px;
-    margin: 0px 30px 30px 30px;
+    text-align: left;
+    margin: 0px 10px 30px 10px;
     font-family: 'Poppins';
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .vertical_fourth .profile-container .description .quote-container{
     display: grid; 
-    grid-template-columns: 0.5fr 10fr 0.5fr;
+    grid-template-columns: 1fr 10fr 1fr;
 }
 
 .vertical_fourth .profile-container .description .quote-container .quote-mark-start{
@@ -170,13 +165,21 @@
     padding-top: 15px;
 }
 
+/* Achievements */
 
 .vertical_fourth .profile-container #martin_achievements,
 .vertical_fourth .profile-container #mark_achievements,
 .vertical_fourth .profile-container #csonor_achievements{
-    display: none;
-    margin-top: 100px; 
+    display: none; 
     letter-spacing: 1px;
+    margin: 15px;
+}
+
+.vertical_fourth .profile-container #martin_achievements h3,
+.vertical_fourth .profile-container #mark_achievements h3,
+.vertical_fourth .profile-container #csonor_achievements h3{
+    text-align: center;
+    margin: 0px;
 }
 
 .vertical_fourth .profile-container p{
@@ -187,13 +190,13 @@
 #mark_achievements li ,
 #csonor_achievements li {
     padding-bottom: 3px;
-    opacity: 0;
     transform: translateY(20px); /* Start with slight vertical offset */
     animation: fadeInUp 0.5s ease forwards;
     font-family: 'Poppins';
     font-size: 12px;
+    list-style-type: disc;
+    margin: 3px 0;
 }
-
 
 /* Define the fade-in-up animation */
 @keyframes fadeInUp {
@@ -204,44 +207,5 @@
     100% {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-
-/* Hover effect for profile container */
-
-.vertical_fourth .profile-container .mark_profile:hover .profile-picture,
-.vertical_fourth .profile-container .martin_profile:hover .profile-picture ,
-.vertical_fourth .profile-container .csonor_profile:hover .profile-picture {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 100%;
-    height: 110px;
-}
-
-.vertical_fourth .profile-container .mark_profile:hover .profile-picture img,
-.vertical_fourth .profile-container .martin_profile:hover .profile-picture img ,
-.vertical_fourth .profile-container .csonor_profile:hover .profile-picture img {
-    width: auto; /* Fit the new smaller profile picture container */
-    height: 100%;
-    border-radius: 50%;
-    border: ridge 1px rgb(44, 44, 44);
-    background-color: rgba(0, 0, 0, 0.319);
-}
-
-
-@media screen and (width: 2560px) and (orientation:landscape){
-    .vertical_fourth .profile-container{
-        font-size: 20px;
-    }
-    .vertical_fourth .profile-container .mark_profile:hover .profile-picture,
-    .vertical_fourth .profile-container .martin_profile:hover .profile-picture ,
-    .vertical_fourth .profile-container .csonor_profile:hover .profile-picture {
-        position: absolute;
-        top: 10px;
-        left: 50px;
-        width: auto;
-        height: 200px;
     }
 }

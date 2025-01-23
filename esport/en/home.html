@@ -255,7 +255,17 @@
 
   </body>
 
+  <script>
+    if (screen.width > 767) {
+      const script = document.createElement('script');
+      script.src = '../js/dynamic_profiles.js';
+      document.head.appendChild(script); 
+    } else {
+      const script = document.createElement('script');
+      script.src = '../js/mobile/dynamic_profiles_mobile.js';
+      document.head.appendChild(script); 
+    }
+  </script>
   <script src="../js/home.js"></script>
-  <script src="../js/dynamic_profiles_en.js"></script>
 
 </html> 
