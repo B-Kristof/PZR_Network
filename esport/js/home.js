@@ -214,10 +214,3 @@ function prevSlide() {
 
 // Load images when the page loads
 window.onload = fetchImages;
-
-// Twitch embed initialization
-new Twitch.Embed("twitch-embed1", {
-    width: 854,
-    height: 480,
-    channel: "pzrteam",
-});

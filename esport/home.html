@@ -213,8 +213,7 @@
         </div>
         <div class="streams_container">
           <div class="stream_card">
-            <div class="twitch-embed" id="twitch-embed1"></div>
-            <script src="https://embed.twitch.tv/embed/v1.js"></script>
+            <div class="twitch-embed" id="twitch-embed"></div>
           </div>
           <div class="channel-container">
             <div class="youtube_container">
@@ -267,5 +266,16 @@
     }
   </script>
   <script src="js/home.js"></script>
+  <script src="https://embed.twitch.tv/embed/v1.js"></script>
+  <script type="text/javascript">
+    new Twitch.Embed("twitch-embed", {
+      width: 854,
+      height: 480,
+      channel: "pzrteam",
+      parent: ["pzrteam.hu"],
+      muted: true,
+      layout: "video"
+    });
+  </script>
 
 </html>

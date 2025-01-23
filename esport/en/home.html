@@ -212,8 +212,7 @@
         </div>
         <div class="streams_container">
           <div class="stream_card">
-            <div class="twitch-embed" id="twitch-embed1"></div>
-            <script src="https://embed.twitch.tv/embed/v1.js"></script>
+            <div class="twitch-embed" id="twitch-embed"></div>
           </div>
           <div class="channel-container">
             <div class="youtube_container">
@@ -240,11 +239,11 @@
             <h1>Stay up to date</h1>
             <p>Follow us on our social media pages</p>
             <div class="social-media-container"> 
-              <a href="utilities/redirecthandler.php?src=pzrteam.hu/esport/en/home.html&dst=https://www.instagram.com/pzrteamofficial/"><img src="images/contacts/icons8-instagram-48.png"/></a>
-              <a href="utilities/redirecthandler.php?src=pzrteam.hu/esport/en/home.html&dst=https://www.youtube.com/@pzkpfwtm366"><img src="images/contacts/icons8-youtube-48.png"/></a>
-              <a href="utilities/redirecthandler.php?src=pzrteam.hu/esport/en/home.html&dst=https://www.twitch.tv/pzrteam"><img src="images/contacts/twitch-tv-48.png"/></a>
-              <a href="utilities/redirecthandler.php?src=pzrteam.hu/esport/en/home.html&dst=https://www.discord.gg/KVNwBzqGe8"><img src="images/contacts/icons8-discord-48.png"/></a>
-              <a href="utilities/redirecthandler.php?src=pzrteam.hu/esport/en/home.html&dst=https://www.tiktok.com/@pzrteam"><img src="images/contacts/icons8-tiktok-48.png"/></a>
+              <a href="utilities/redirecthandler.php?src=pzrteam.hu/esport/en/home.html&dst=https://www.instagram.com/pzrteamofficial/"><img src="../images/contacts/icons8-instagram-48.png"/></a>
+              <a href="utilities/redirecthandler.php?src=pzrteam.hu/esport/en/home.html&dst=https://www.youtube.com/@pzkpfwtm366"><img src="../images/contacts/icons8-youtube-48.png"/></a>
+              <a href="utilities/redirecthandler.php?src=pzrteam.hu/esport/en/home.html&dst=https://www.twitch.tv/pzrteam"><img src="../images/contacts/twitch-tv-48.png"/></a>
+              <a href="utilities/redirecthandler.php?src=pzrteam.hu/esport/en/home.html&dst=https://www.discord.gg/KVNwBzqGe8"><img src="../images/contacts/icons8-discord-48.png"/></a>
+              <a href="utilities/redirecthandler.php?src=pzrteam.hu/esport/en/home.html&dst=https://www.tiktok.com/@pzrteam"><img src="../images/contacts/icons8-tiktok-48.png"/></a>
             </div>
         </div>
         <div class="footer">
@@ -254,7 +253,6 @@
     </section>
 
   </body>
-
   <script>
     if (screen.width > 767) {
       const script = document.createElement('script');
@@ -267,5 +265,19 @@
     }
   </script>
   <script src="../js/home.js"></script>
+
+  <script src="https://embed.twitch.tv/embed/v1.js"></script>
+
+  
+  <script type="text/javascript">
+    new Twitch.Embed("twitch-embed", {
+      width: 854,
+      height: 480,
+      channel: "pzrteam",
+      parent: ["pzrteam.hu"],
+      muted: true,
+      layout: "video"
+    });
+  </script>
 
 </html> 
