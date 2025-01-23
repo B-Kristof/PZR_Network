@@ -16,20 +16,14 @@
 ## 🎮 **ESPORT**
 
 ### 📝 Todo
-- [ ] Profile for each member
-    - [ ] Link social media accounts (Instagram, YouTube, Twitch, etc.)
-    - [ ] Achievements of each member
 - [ ] Mobile background for Driver profiles
-- [ ] Better font for Driver profiles
-- [ ] Translate "Subscribe" to Hungarian (Media section)
 - [ ] Redirect handler -> Write logs in Apache
     - [ ] Filter for valid records
+- [ ] Database integration for RedirectHandler
 
 ### 🔄 In Progress
-- [ ] Website deployer (Python script)
-- [ ] Website Monitor (Python script)
-    - [ ] Offline state alert system
-    - [ ] GUI interface
+
+- [ ] Gallery page
 
 ### ✅ Done
 - [x] State UML diagram
@@ -52,6 +46,12 @@
 - [x] Transparent member images
 - [x] Mobile-friendly home background
 - [x] Member descriptions
+- [x] Profile for each member
+    - [x] Link social media accounts (Instagram, YouTube, Twitch, etc.)
+    - [x] Achievements of each member
+- [x] Better font for Driver profiles
+- [x] Translate "Subscribe" to Hungarian (Media section)
+- [x] Add Simhome partner
 
 ---
 
@@ -98,6 +98,8 @@
 - [ ] Disable page indexing for search engines
 
 ### 🔄 In Progress
+
+- [ ] Database integration
 
 ### ✅ Done
 
