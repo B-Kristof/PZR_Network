@@ -72,7 +72,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(../images/gallery/urd_t5_maures_2018_ks_brands_hatch.jpg);
+    background-image: url(../images/bg/mark_profile_bg.jpg);
     background-size: cover;
     background-position: center;
     filter: blur(2px) brightness(0.5);
@@ -86,7 +86,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(../images/gallery/rss_gt_ferruccio_55_ks_nordschleife.jpg);
+    background-image: url(../images/bg/csonor_profile_bg.jpg);
     background-size: cover;
     background-position: center;
     filter: blur(2px) brightness(0.5);
@@ -115,7 +115,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(../images/gallery/20240715211430_1.jpg);
+    background-image: url(../images/bg/martin_profile_bg.jpg);
     background-size: cover;
     background-position: center;
     filter: blur(2px) brightness(0.5);
@@ -131,6 +131,7 @@
     background-color: transparent;
     height: 100%;
     transition: all 0.3s ease-out;
+    mask-image: linear-gradient(rgb(0, 0, 0) 94%, transparent 100%);
 }
 
 .vertical_fourth .profile-container .profile-picture img{
@@ -148,6 +149,8 @@
     text-align: center;
     font-size: 14px;
     margin: 0px 30px 30px 30px;
+    font-family: 'Poppins';
+    font-size: 16px;
 }
 
 .vertical_fourth .profile-container .description .quote-container{
@@ -189,12 +192,10 @@
     padding-top: 10px;
 }
 
-.vertical_fourth .profile-container p,
 .vertical_fourth .profile-container p{
     margin: 0px;
 }
 
-/* Apply animation to each list item under #martin_achievements or #mark_achievements */
 #martin_achievements li,
 #mark_achievements li ,
 #csonor_achievements li {
@@ -202,6 +203,8 @@
     opacity: 0;
     transform: translateY(20px); /* Start with slight vertical offset */
     animation: fadeInUp 0.5s ease forwards;
+    font-family: 'Poppins';
+    font-size: 16px;
 }
 
 

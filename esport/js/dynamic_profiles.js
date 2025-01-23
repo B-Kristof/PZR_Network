@@ -28,7 +28,7 @@ document.getElementById('mark_profile').addEventListener('mouseenter', function(
     mark_achievements.style.display = "block";
     mark_profile_picture_div.style.display = "flex";
     mark_profile_picture_div.innerHTML += `
-      <div style="margin-left: 20px; font-size: 50px; display: flex; width: 100%;">Nagy Márk</div>
+      <div style="margin-left: 20px; font-size: 45px; display: flex; width: 100%;">Nagy Márk</div>
     `;
   }
 });

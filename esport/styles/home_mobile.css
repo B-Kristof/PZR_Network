@@ -3,10 +3,11 @@ body {
     height: 100%;
     background-color: white;
     margin: 0;
-    overflow-x: hidden;
     display: grid;
     background-color: black;
 }
+
+
 
 
 
@@ -47,7 +48,7 @@ body {
 .top_menu .menu-container a{
     display: flex;
     align-items: center;
-    padding: 2px 5px 2px 5px;
+    padding: 2px 2px 2px 2px;
     justify-content: center;
     text-align: center;
     color: white;
@@ -92,6 +93,7 @@ body {
     background-color: black;
     color: white;
     min-height: 100vh;
+    width: 100%;
     display: grid;
     align-content: center;
     background-image: url(../images/bg/mobile.jpg);
@@ -113,7 +115,7 @@ body {
 
 .garde-text {
     font-family: 'Garde', serif;
-    font-size: 50px;
+    font-size: 40px;
     letter-spacing: 2px;
     text-align: center;
     margin: 0;
@@ -124,7 +126,7 @@ body {
 
 .first_line {
     font-family: "Libre Caslon Text", serif;
-    font-size: 20px;
+    font-size: 15px;
     letter-spacing: 8px;
     animation: floatIn 0.9s forwards; /* animation speed */
     animation-delay: 0.1s; /* animation delay */
@@ -133,7 +135,7 @@ body {
 
 .third_line {
     font-family: "Libre Caslon Text", serif;
-    font-size: 30px;
+    font-size: 20px;
     letter-spacing: 2px;
     padding-top: 25px;
     padding-bottom: 25px;
@@ -162,8 +164,8 @@ body {
     margin: 0 18px; /* Add some space between icons */
 }
 
-.vertical_first  .contacts a img{
-    width: fit-content;
+.vertical_first .contacts a img{
+    width: 100%;
     height: 30px;
     width: auto;
     transition: transform 0.1s ease-in-out;
@@ -309,7 +311,7 @@ body {
     position: relative;
     top: 0%;
     height: 12vh;
-    min-width: 100%;
+    width: 100%;
     background-color: rgb(146, 12, 12);
     z-index: 100000;
 }
@@ -318,13 +320,12 @@ body {
     position: relative;
     top: 85%;
     height: 14vh;
-    min-width: 100%;
+    width: 100%;
     background-color: black;
     z-index: 10;
 }
 
 
-/* VERTICAL FOURTH PAGE (MEMBERS) */
 
 /* VERTICAL FOURTH PAGE (MEMBERS) */
 
@@ -344,12 +345,11 @@ body {
     z-index: 10;
     color: white;
     background-image: url(../images/bg/members_bg.jpg);
+    width: 100%
 }
 
 .vertical_fourth .profile-container {
     top: 0;
-    padding-right: 50px;
-    padding-left: 50px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -365,16 +365,10 @@ body {
 .vertical_fourth .profile-container .single-profile-container{
     display: grid;
     align-content: center;
-    min-width: 40vh;
+    width: 100%;
 }
 
 
-@media screen and (max-width: 750px){
-    .vertical_fourth .profile-container{
-        display: grid;
-    }
-    
-}
 
 /* Mark Profile */
 
@@ -385,7 +379,6 @@ body {
     position: relative;
     margin-top: 50px;
     min-height: 75vh;
-    width: 50vh;
     display: grid;
     border-radius: 40px;
     overflow: hidden;
@@ -400,7 +393,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(../images/gallery/urd_t5_maures_2018_ks_brands_hatch.jpg);
+    background-image: url(../images/bg/mark_profile_bg.jpg);
     background-size: cover;
     background-position: center;
     filter: blur(2px) brightness(0.5);
@@ -414,7 +407,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(../images/gallery/rss_gt_ferruccio_55_ks_nordschleife.jpg);
+    background-image: url(../images/bg/csonor_profile_bg.jpg);
     background-size: cover;
     background-position: center;
     filter: blur(2px) brightness(0.5);
@@ -443,7 +436,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url(../images/gallery/20240715211430_1.jpg);
+    background-image: url(../images/bg/martin_profile_bg.jpg);
     background-size: cover;
     background-position: center;
     filter: blur(2px) brightness(0.5);
@@ -459,6 +452,7 @@ body {
     background-color: transparent;
     height: 100%;
     transition: all 0.3s ease-out;
+    mask-image: linear-gradient(rgb(0, 0, 0) 94%, transparent 100%);
 }
 
 .vertical_fourth .profile-container .profile-picture img{
@@ -476,6 +470,8 @@ body {
     text-align: center;
     font-size: 14px;
     margin: 0px 30px 30px 30px;
+    font-family: 'Poppins';
+    font-size: 14px;
 }
 
 .vertical_fourth .profile-container .description .quote-container{
@@ -512,25 +508,19 @@ body {
     letter-spacing: 1px;
 }
 
-.vertical_fourth .profile-container .achievements{
-    margin-left: 15px;
-    padding-top: 10px;
-}
-
-.vertical_fourth .profile-container p,
 .vertical_fourth .profile-container p{
     margin: 0px;
 }
 
-/* Apply animation to each list item under #martin_achievements or #mark_achievements */
 #martin_achievements li,
 #mark_achievements li ,
 #csonor_achievements li {
-    font-size: 11px;
     padding-bottom: 3px;
     opacity: 0;
     transform: translateY(20px); /* Start with slight vertical offset */
     animation: fadeInUp 0.5s ease forwards;
+    font-family: 'Poppins';
+    font-size: 12px;
 }
 
 
@@ -549,20 +539,14 @@ body {
 
 /* Hover effect for profile container */
 
-.vertical_fourth .profile-container .mark_profile:hover,
-.vertical_fourth .profile-container .martin_profile:hover ,
-.vertical_fourth .profile-container .csonor_profile:hover {
-    transform: scale(1.0); /* Slightly enlarge the profile container */
-}
-
 .vertical_fourth .profile-container .mark_profile:hover .profile-picture,
 .vertical_fourth .profile-container .martin_profile:hover .profile-picture ,
 .vertical_fourth .profile-container .csonor_profile:hover .profile-picture {
     position: absolute;
     top: 10px;
-    left: 50px;
+    left: 10px;
     width: 100%;
-    height: 150px;
+    height: 110px;
 }
 
 .vertical_fourth .profile-container .mark_profile:hover .profile-picture img,
@@ -575,12 +559,6 @@ body {
     background-color: rgba(0, 0, 0, 0.319);
 }
 
-.vertical_fourth .profile-container .mark_profile:hover .description,
-.vertical_fourth .profile-container .martin_profile:hover .description ,
-.vertical_fourth .profile-container .csonor_profile:hover .description {
-    padding-top: 160px; /* Adjust for profile picture placement */
-    transition: padding-top 0.3s ease-in-out;
-}
 
 @media screen and (width: 2560px) and (orientation:landscape){
     .vertical_fourth .profile-container{
@@ -595,31 +573,6 @@ body {
         width: auto;
         height: 200px;
     }
-}
-
-
-
-
-/* Scrollbar style (for profile-container) */
-
-/* width */
-    .vertical_fourth .profile-container ::-webkit-scrollbar {
-    width: 8px;
-}
-
-/* Track */
-    .vertical_fourth .profile-container ::-webkit-scrollbar-track {
-    background: #616161;
-}
-
-/* Handle */
-    .vertical_fourth .profile-container ::-webkit-scrollbar-thumb {
-    background: #222222;
-}
-
-/* Handle on hover */
-    .vertical_fourth .profile-container ::-webkit-scrollbar-thumb:hover {
-    background: #555;
 }
 
 
@@ -881,20 +834,25 @@ body {
     animation: fadeIn 0.5s ease-in-out;
 }
 
+.vertical_sixth .stream_card .twitch-embed{
+    position: relative;
+    border-radius: 20px;
+    width: 98%;
+}
 
 .vertical_sixth .stream_card .twitch-embed iframe{
     border-radius: 20px;
-    width: 40vh;
-    height: 35vh;
+    width: 100%;
+    height: 40vh;
 }
 
 .vertical_sixth .channel-container{
-    width: 38vh;
+    width: 90%;
     height: fit-content;
     padding: 2vh;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border-radius: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 35px;
     display: flex;
     background-color: rgb(24, 24, 27);
 }
@@ -902,13 +860,13 @@ body {
 .vertical_sixth .channel-container .youtube_container{
     display: grid;
     width: 100%;
-    height: 40%;
+    height: 100%;
 }
 
 /* Add animation to youtube_card */
 .vertical_sixth .youtube_card {
-    height: 60px;
-    margin-top: 15px;
+    height: 40px;
+    margin-top: 10px;
     border-radius: 15px;
     display: flex;
     opacity: 0;
@@ -943,14 +901,15 @@ body {
     margin: 0;
     margin-block-start: 0;
     margin-block-end: 0;
-    font-size: 20px;
+    font-size: 14px;
     text-align: center;
     border-bottom: solid 1px rgb(54, 54, 54);
 }
 
 .vertical_sixth .youtube_container h1{
+    letter-spacing: 1px;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .vertical_sixth .youtube_card .yt_profile_img{
@@ -996,7 +955,7 @@ body {
 .vertical_sixth .youtube_card .youtube-embed{
     border: 0; 
     width: 80%;
-    height: 80px;
+    height: 50px;
     margin: 0 auto;
     border-radius: 20px;
     display: flex;
@@ -1006,19 +965,20 @@ body {
 
 /* VERTICAL SEVENTH PAGE (CONTACTS)*/
 
+
 .vertical_seventh {
     background-color: rgb(146, 12, 12); 
     color: white;
     min-height: fit-content;
     display: grid;
-    justify-items: center
+    justify-items: center;
 }
 
 
 .vertical_seventh .contact_container{
     justify-content: space-between;
     width: 100%;
-    display: grid;
+    gap: 20px;
     justify-content: center;
     text-align: center;
 }
@@ -1026,75 +986,45 @@ body {
 
 
 .vertical_seventh .contact_container h1{
-    min-width: 100%;
-    font-size: 14px;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 10px;
     letter-spacing: 1px;
 }
 
 .vertical_seventh .contact_container p{
-    min-width: 100%;
-    font-size: 10px;
+    width: 100%;
+    font-size: 12px;
     letter-spacing: 1px;
-    text-decoration: none;
 }
 
-.vertical_seventh .contact_container .subscribe-container{
+.vertical_seventh .social-media-container{
     display: grid;
-    justify-items: center
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    width: 200px;
+    margin: 0 auto;
+
 }
 
-.vertical_seventh .contact_container .subscribe-container label{
-    font-size: 10px;
-    width: 100%;
-}
-
-.vertical_seventh .contact_container .subscribe-container input{
-    border-radius: 5px;
-    border: none;
-    margin-top: 10px;
-    height: 20px;
-    width: 100%;
-    font-size: 12px;
-}
-
-.vertical_seventh .contact_container .subscribe-container button{
-    width: fit-content;
-    height: 20px;
-    border-radius: 5px;
-    font-size: 12px;
-    border: none;
-    background-color: rgb(255, 255, 255);
-    cursor: pointer;
-    margin-left: 3px;
-}
-
-.vertical_seventh .contact_container .subscribe-container .email-form{
-    display: flex;
-    align-items: baseline;
-}
-
-.vertical_seventh .contact_container .subscribe-container button:hover{
-    background-color: rgb(167, 167, 167);
-    color: rgb(146, 12, 12)
-}
-
-.vertical_seventh .contact_container .subscribe-container label{
-    letter-spacing: 1px;
+.vertical_seventh .contact_container .social-media-container a img{
+    width: 50%;
+    height: auto;
 }
 
 
 .vertical_seventh .footer:before{
     margin: 0 auto;
-    width: 370px;
+    width: 80%;
     content:' ';
     display: block;
-    border: 1px solid white;
+    border: 0.5px solid white;
 }
 
 .vertical_seventh .footer{
     text-align: center;
     padding-top: 35px;
-    font-size: 12px;
+    font-size: 14px;
     letter-spacing: 1px;
+    width: 100%;
 }
 

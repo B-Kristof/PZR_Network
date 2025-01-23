@@ -10,7 +10,8 @@ $allowedDomains = [
     'mtsimtech.hu',
     'hypeitmarketing.hu',
     'www.skynet-computer.hu',
-    'nbnhutestechnika.hu'
+    'nbnhutestechnika.hu',
+    'simhome.hu'
 ];
 
 // Path to the log file
