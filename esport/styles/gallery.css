@@ -2,6 +2,14 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: black;
+    margin-top: 5vh;
+}
+
+.main-container{
+    margin-top: 6vh;
+    display: flex;
+    grid-template-columns: 1fr 5fr;
+    height: 94vh;
 }
 
 
@@ -10,6 +18,8 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 10px;
     padding: 10px;
+    max-height: 91vh;
+    overflow-y: scroll;
 }
 
 .gallery img {
@@ -21,7 +31,7 @@ body {
 }
 
 .gallery img:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .fullscreen {
@@ -59,4 +69,57 @@ body {
     color: white;
     cursor: pointer;
     z-index: 9;
+}
+
+.main-container .album-selector-container{
+    min-height: 100%;
+    display: flex;
+    flex-grow: 1;
+    background-color: rgb(27, 27, 27);
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+.main-container .album-selector-container .album-selector{
+    display: grid;
+    height: fit-content;
+}
+
+.main-container .album-selector-container .album-selector .year-option{
+    color: white;
+    text-align: center;
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 2vh;
+    width: 25vh;
+    font-size: 18px;
+    font-family: 'Poppins';
+}
+
+.main-container .album-selector-container .album-selector .year-option:hover{
+    background-color: rgb(37, 37, 37);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* width */
+.main-container .gallery::-webkit-scrollbar {
+    width: 12px;
+}
+
+/* Track */
+.main-container .gallery::-webkit-scrollbar-track {
+    background: #525252;
+}
+
+/* Handle */
+.main-container .gallery::-webkit-scrollbar-thumb {
+    background: #1f1f1f;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+.main-container .gallery::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

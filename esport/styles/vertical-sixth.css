@@ -26,9 +26,10 @@
 .vertical_sixth .gallery{
     padding-bottom: 100px;
     margin: 0 auto;
+    margin-top: 50px;
     display: grid;
     grid-template-columns: 5% auto 5%;
-    height: 65vh;
+    height: 40vh;
     width: 100%;
 }
 

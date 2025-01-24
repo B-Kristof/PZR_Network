@@ -19,45 +19,28 @@
           <a href="/esport/home.html#contacts" class="menu-link">Kapcsolat</a>
         </div>
       </div>
-    <div class="gallery"></div>
-    <div class="fullscreen" id="fullscreen">
-        <span class="close" id="close">&times;</span>
-        <img id="fullscreenImage" src="" alt="Full Image">
+    
+    <div class="main-container"> 
+        <!-- Album selector -->
+        <div class="album-selector-container">
+            <div class="album-selector" id="album-selector"></div>
+        </div>
+        
+        <!-- Display images in Gallery -->
+        <div class="gallery-container">
+            <div class="gallery"></div>
+        </div>
+        <div class="fullscreen" id="fullscreen">
+            <span class="close" id="close">&times;</span>
+            <img id="fullscreenImage" src="" alt="Full Image">
+        </div>
     </div>
 
+    <script src="js/load_gallery.js"></script>
     <script>
-        async function loadGallery() {
-            const gallery = document.querySelector('.gallery');
-            const top_menu = document.getElementById('top_menu');
-            const response = await fetch('utilities/get_images_for_gallery_page.php');
-            const images = await response.json();
-
-            images.forEach(src => {
-                const img = document.createElement('img');
-                img.src = "images/gallery/" + src;
-                img.alt = "Gallery Image";
-                img.addEventListener('click', () => openFullscreen(src));
-                gallery.appendChild(img);
-            });
-        }
-
-        function openFullscreen(src) {
-            top_menu.style.display = "none";
-            const fullscreen = document.getElementById('fullscreen');
-            const fullscreenImage = document.getElementById('fullscreenImage');
-            fullscreenImage.src = "images/gallery/" + src;
-            fullscreen.classList.add('visible');
-        }
-
-        function closeFullscreen() {
-            const fullscreen = document.getElementById('fullscreen');
-            fullscreen.classList.remove('visible');
-            top_menu.style.display = "inline-flex";
-        }
-
-        document.getElementById('close').addEventListener('click', closeFullscreen);
-
-        window.onload = loadGallery;
+        currentYear = new Date().getFullYear();
+        loadAlbumSelector();
+        window.onload = loadGallery(currentYear);
     </script>
 </body>
 </html>
