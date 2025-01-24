@@ -150,25 +150,26 @@ window.addEventListener('scroll', updateActiveMenu);
 // Slideshow functionality
 let currentSlide = 0;
 let slides;
-async function fetchImages() {
+async function fetchImages(year) {
     try {
         let en_switch = false;
-        let response = await fetch('utilities/get_images_for_gallery.php'); // Fetch image list from server
+        let response = await fetch('utilities/get_images_for_gallery.php?year=' + year); // Fetch image list from server
         if (response.status == 404){
             console.log("en")
-            response = await fetch('../utilities/get_images_for_gallery.php'); // Fetch image list from server
+            response = await fetch('../utilities/get_images_for_gallery.php?year=' + year); // Fetch image list from server
             en_switch = true;
         }
         const images = await response.json();
+        console.log(images);
         const slideshowContainer = document.getElementById('slideshow');
 
         // Add images to the DOM
         images.forEach((image, index) => {
             let img = document.createElement('img');
             if (!en_switch){
-                img.src = `images/gallery/${image}`;
+                img.src = `images/gallery/${year}/${image}`;
             } else {
-                img.src = `../images/gallery/${image}`;
+                img.src = `../images/gallery/${year}/${image}`;
             }
             img.classList.add('slide');
             if (index === 0) {
@@ -178,7 +179,7 @@ async function fetchImages() {
         });
 
         slides = document.querySelectorAll('.slide'); // Update the slides array
-        startSlideshow();
+        // startSlideshow();
     } catch (error) {
         console.error('Error fetching images:', error);
     }
@@ -211,6 +212,3 @@ function prevSlide() {
     showSlide(currentSlide - 1);
 }
 
-
-// Load images when the page loads
-window.onload = fetchImages;

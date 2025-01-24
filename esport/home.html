@@ -254,6 +254,7 @@
     </section>
 
   </body>
+  <script src="js/home.js"></script>
   <script>
     if (screen.width > 767) {
       const script = document.createElement('script');
@@ -264,8 +265,9 @@
       script.src = 'js/mobile/dynamic_profiles_mobile.js';
       document.head.appendChild(script); 
     }
+    // Load images when the page loads
+    fetchImages(new Date().getFullYear());
   </script>
-  <script src="js/home.js"></script>
   <script src="https://embed.twitch.tv/embed/v1.js"></script>
   <script type="text/javascript">
     new Twitch.Embed("twitch-embed", {
