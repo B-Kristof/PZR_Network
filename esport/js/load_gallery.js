@@ -16,13 +16,24 @@ async function loadGallery(year) {
     const images = await fetchImages(year);
 
     if (images.length > 0) {
-        images.forEach(src => {
-            const img = document.createElement('img');
-            img.src = `images/gallery/${year}/${src}`;
-            img.alt = "Gallery Image";
-            img.addEventListener('click', () => openFullscreen(src, year));
-            gallery.appendChild(img);
-        });
+        if (images.length === 1){
+            images.forEach(src => {
+                const img = document.createElement('img');
+                img.className = "single-img";
+                img.src = `images/gallery/${year}/${src}`;
+                img.alt = "Gallery Image";
+                img.addEventListener('click', () => openFullscreen(src, year));
+                gallery.appendChild(img);
+            });
+        } else {
+            images.forEach(src => {
+                const img = document.createElement('img');
+                img.src = `images/gallery/${year}/${src}`;
+                img.alt = "Gallery Image";
+                img.addEventListener('click', () => openFullscreen(src, year));
+                gallery.appendChild(img);
+            });
+        }
     } else {
         gallery.innerHTML += `<div style="color: white; margin-top: 5vh;">No image for that year!</div>`;
     }
