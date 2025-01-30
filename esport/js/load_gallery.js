@@ -12,7 +12,9 @@ async function fetchImages(year) {
 async function loadGallery(year) {
     unloadGallery();
     const gallery = document.querySelector('.gallery');
+
     const images = await fetchImages(year);
+
     if (images.length > 0) {
         images.forEach(src => {
             const img = document.createElement('img');
@@ -25,7 +27,6 @@ async function loadGallery(year) {
         gallery.innerHTML += `<div style="color: white; margin-top: 5vh;">No image for that year!</div>`;
     }
 }
-
 async function retrieveAlbums() {
     try {
         const response = await fetch(`utilities/get_albums_for_gallery.php`);
@@ -64,18 +65,32 @@ document.getElementById('close').addEventListener('click', closeFullscreen);
 
 
 async function loadAlbumSelector() {
-    const album_names = await retrieveAlbums(); // Declare with const or let
+    const album_names = await retrieveAlbums();
     const albumSelector = document.getElementById('album-selector');
 
     currentYear = new Date().getFullYear();
     album_names.forEach(album_name => {
-        // Create a new DOM element
         const yearOption = document.createElement('div');
         yearOption.className = 'year-option';
         yearOption.textContent = album_name;
-        yearOption.onclick = () => loadGallery(yearOption.innerText);
+        yearOption.onclick = () => {
+            // Remove active class from all options
+            document.querySelectorAll('.year-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            // Add active class to the clicked option
+            yearOption.classList.add('active');
+            loadGallery(yearOption.innerText);
+        };
 
-        // Append the DOM element to the album selector
+        // Set the current year as active by default
+        if (album_name === currentYear.toString()) {
+            yearOption.classList.add('active');
+        }
+
         albumSelector.appendChild(yearOption);
     });
+
+    // Load the gallery for the current year by default
+    loadGallery(currentYear);
 }
