@@ -20,6 +20,8 @@
 - [ ] Redirect handler -> Write logs in Apache
     - [ ] Filter for valid records
 - [ ] Database integration for RedirectHandler
+- [ ] About us section rework
+- [ ] Contact section rework
 
 ### 🔄 In Progress
 
