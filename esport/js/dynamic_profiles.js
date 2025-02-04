@@ -1,13 +1,13 @@
 function getElement(id) {
   const element = document.getElementById(id);
-  if (!element) console.error(`Element with ID '${id}' not found.`);
+  if (!element) throw new Error(`Element with ID '${id}' not found.`);
   return element;
 }
 
 function getQuerySelector(parent, selector) {
   if (!parent) return null;
   const element = parent.querySelector(selector);
-  if (!element) console.error(`Selector '${selector}' not found in '${parent.id}'.`);
+  if (!element) throw new Error(`Selector '${selector}' not found in '${parent.id}'.`);
   return element;
 }
 
