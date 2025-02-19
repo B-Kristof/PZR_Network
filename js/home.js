@@ -59,7 +59,7 @@ nav_members_only.onmousedown = function () {
     nav_members_only.style.marginRight = "-150%";
     members_only_overlay.style.opacity = 0;
     setTimeout(function () {
-        window.location.href = "/drink/login.php";
+        window.location.href = "/membersonly/public/login.php";
     }, 400);
     setTimeout(function () {
         nav_members_only.style = old_members_only_style;
