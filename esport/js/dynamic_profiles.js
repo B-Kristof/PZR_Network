@@ -67,8 +67,8 @@ function setupProfileHover(name, displayName, fontSize) {
 
 // Apply hover effects to profiles
 setupProfileHover("mark", "Nagy Márk", 50);
-setupProfileHover("martin", "Martin Mózes", 45);
-setupProfileHover("csonor", "Csongor Dobák", 45);
+setupProfileHover("martin", "Mózes Martin", 45);
+setupProfileHover("csonor", "Dobák Csongor", 45);
 
 // Add staggered animation delays
 profiles.forEach(name => {

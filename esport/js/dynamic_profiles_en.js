@@ -66,7 +66,7 @@ function setupProfileHover(name, displayName, fontSize) {
 }
 
 // Apply hover effects to profiles
-setupProfileHover("mark", "Nagy Márk", 50);
+setupProfileHover("mark", "Márk Nagy", 50);
 setupProfileHover("martin", "Martin Mózes", 45);
 setupProfileHover("csonor", "Csongor Dobák", 45);
 
