@@ -20,10 +20,12 @@
 - [ ] Redirect handler -> Write logs in Apache
     - [ ] Filter for valid records
 - [ ] Database integration for RedirectHandler
+- [ ] About us section rework
+- [ ] Contact section rework
 
 ### 🔄 In Progress
 
-- [ ] Gallery page
+- [ ] getElementById Null Check vuln. fix a weboldalon
 
 ### ✅ Done
 - [x] State UML diagram
@@ -52,6 +54,7 @@
 - [x] Better font for Driver profiles
 - [x] Translate "Subscribe" to Hungarian (Media section)
 - [x] Add Simhome partner
+- [x] Gallery page
 
 ---
 

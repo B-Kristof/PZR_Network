@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" href="images/logo/favicon.ico" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery</title>
     <link rel="stylesheet" href="styles/gallery.css">
-    <link rel="stylesheet" href="styles/top_menu_home.css">
+    <link rel="stylesheet" type="text/css" media="screen and (min-device-width: 767px)" href="styles/top_menu_home.css"/>
+    <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 767px)" href="styles/gallery_mobile.css"/>
 </head>
 <body>
     <!-- top menu -->
@@ -40,7 +42,6 @@
     <script>
         currentYear = new Date().getFullYear();
         loadAlbumSelector();
-        window.onload = loadGallery(currentYear);
     </script>
 </body>
 </html>

@@ -1,0 +1,211 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+}
+
+.top_menu{
+    background-color: black;
+    display: inline-flex;
+    height: 50px;
+    z-index: 500000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.top_menu .menu-container{
+    display: flex;
+    width: 100%;
+    gap: 5px;
+    justify-content: center;
+}
+
+.top_menu .language-switch-container{
+    margin: auto 0;
+}
+
+/* Animations for text lines (float in) */
+@keyframes floatIn {
+    0% {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.top_menu .menu-container a{
+    display: flex;
+    align-items: center;
+    padding: 2px 2px 2px 2px;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    font-family: "Verdana", serif;
+    font-size: 12px;
+    position: relative;
+    transition: color 0.3s ease; /* Smooth transition for text color */
+    animation: floatIn 0.25s forwards;
+}
+
+
+
+.top_menu .menu-container a::after {
+    content: ''; /* Creates a pseudo-element to hold the border */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: rgb(226, 9, 9);
+    transition: width 0.15s ease-in-out; /* Controls the speed of the border animation */
+}
+
+.top_menu .menu-container a.active::after,
+.top_menu .menu-container a:hover::after {
+    width: 100%; /* Expands the border to full width on hover/active */
+}
+
+.top_menu .splitter{
+    color: rgb(226, 9, 9);
+    padding: 15px 0px 15px 0px;
+    font-family: "Libre Caslon Text", serif;
+    font-size: 18px;
+}
+.main-container {
+    flex-direction: column; /* Stack elements vertically on small screens */
+    height: 100%;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjust minmax for smaller screens */
+    gap: 10px;
+    width: 100%;
+    max-height: 100%;
+    overflow-y: scroll;
+}
+
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.gallery .single-img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+    margin: 0 auto;
+}
+
+.gallery .single-img:hover {
+    transform: scale(1.0);
+}
+
+.gallery img:hover {
+    transform: scale(1.03);
+}
+
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.fullscreen img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+}
+
+.fullscreen.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.fullscreen .close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    z-index: 9;
+}
+
+.main-container .album-selector-container {
+    height: 5vh;
+    display: flex;
+    background-color: rgb(27, 27, 27);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.main-container .album-selector-container .album-selector {
+    display: flex;
+    flex-direction: row; /* Horizontal layout for small screens */
+    gap: 10px;
+}
+
+.main-container .album-selector-container .album-selector .year-option {
+    color: white;
+    text-align: center;
+    padding: 10px; /* Adjust padding */
+    font-size: 14px;
+    font-family: 'Poppins';
+    background-color: rgb(37, 37, 37);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    white-space: nowrap; /* Prevent text wrapping */
+}
+
+.main-container .album-selector-container .album-selector .year-option:hover {
+    background-color: rgb(47, 47, 47);
+    transform: scale(105%);
+}
+
+.main-container .album-selector-container .album-selector .year-option.active {
+    background-color: rgb(146, 12, 12);
+    padding: 10px;
+}
+
+/* Scrollbar styles */
+.main-container .gallery::-webkit-scrollbar {
+    width: 8px; /* Thinner scrollbar for small screens */
+}
+
+.main-container .gallery::-webkit-scrollbar-track {
+    background: #525252;
+}
+
+.main-container .gallery::-webkit-scrollbar-thumb {
+    background: #1f1f1f;
+    border-radius: 5px;
+}
+
+.main-container .gallery::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

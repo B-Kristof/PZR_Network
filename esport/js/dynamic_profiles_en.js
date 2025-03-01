@@ -1,97 +1,78 @@
-const mark_desc_original = document.getElementById("mark_profile").querySelector('.description p').textContent;
-let mark_profile_picture_div = document.getElementById("mark_profile_picture");
-const mark_desc_style = document.getElementById("mark_profile").querySelector('.description p').style;
-let mark_desc = document.getElementById("mark_desc");
-const mark_profile_picture_div_b = document.getElementById("mark_profile_picture").innerHTML;
-let mark_achievements = document.getElementById("mark_achievements");
+function getElement(id) {
+  const element = document.getElementById(id);
+  if (!element) throw new Error(`Element with ID '${id}' not found.`);
+  return element;
+}
 
-const martin_desc_original = document.getElementById("martin_profile").querySelector('.description p').textContent;
-let martin_profile_picture_div = document.getElementById("martin_profile_picture");
-const martin_desc_style = document.getElementById("martin_profile").querySelector('.description p').style;
-let martin_desc = document.getElementById("martin_desc");
-const martin_profile_picture_div_b = document.getElementById("martin_profile_picture").innerHTML;
-let martin_achievements = document.getElementById("martin_achievements");
+function getQuerySelector(parent, selector) {
+  if (!parent) return null;
+  const element = parent.querySelector(selector);
+  if (!element) throw new Error(`Selector '${selector}' not found in '${parent.id}'.`);
+  return element;
+}
 
-const csonor_desc_original = document.getElementById("csonor_profile").querySelector('.description p').textContent;
-let csonor_profile_picture_div = document.getElementById("csonor_profile_picture");
-const csonor_desc_style = document.getElementById("csonor_profile").querySelector('.description p').style;
-let csonor_desc = document.getElementById("csonor_desc");
-const csonor_profile_picture_div_b = document.getElementById("csonor_profile_picture").innerHTML;
-let csonor_achievements = document.getElementById("csonor_achievements");
+// Profile elements
+const profiles = ["mark", "martin", "csonor"];
+const profileData = {};
 
-document.getElementById('mark_profile').addEventListener('mouseenter', function() {
-  this.querySelector('.description p').textContent = `Nagy Márk vagyok, és a versenyzés a szenvedélyem.`;
-  this.querySelector('.description p').style.textAlign = "left";
-  this.querySelector('.description p').style.marginLeft = "30px";
-  if (mark_profile_picture_div.innerHTML == mark_profile_picture_div_b){
-    mark_desc.style.display = "none";
-    mark_achievements.style.display = "block";
-    mark_profile_picture_div.style.display = "flex";
-    mark_profile_picture_div.innerHTML += `
-      <div style="margin-left: 20px; font-size: 50px; display: flex; width: 100%;">Márk Nagy</div>
-    `;
-  }
+profiles.forEach(name => {
+  profileData[name] = {
+      profile: getElement(`${name}_profile`),
+      desc_original: getQuerySelector(getElement(`${name}_profile`), ".description p")?.textContent || "",
+      profile_picture_div: getElement(`${name}_profile_picture`),
+      desc_style: getQuerySelector(getElement(`${name}_profile`), ".description p")?.style || {},
+      desc: getElement(`${name}_desc`),
+      profile_picture_div_b: getElement(`${name}_profile_picture`)?.innerHTML || "",
+      achievements: getElement(`${name}_achievements`)
+  };
 });
 
-document.getElementById('mark_profile').addEventListener('mouseleave', function() {
-  mark_desc.style.display = "block";
-  mark_achievements.style.display = "none";
-  this.querySelector('.description p').textContent = mark_desc_original;
-  mark_profile_picture_div.innerHTML = mark_profile_picture_div_b;
-  this.querySelector('.description p').style = mark_desc_style
-});
+// Function to handle hover effect
+function setupProfileHover(name, displayName, fontSize) {
+  const data = profileData[name];
+  if (!data.profile) return;
 
+  data.profile.addEventListener('mouseenter', function () {
+      const descEl = getQuerySelector(data.profile, ".description p");
+      if (descEl) {
+          descEl.textContent = `${displayName} vagyok, és a versenyzés a szenvedélyem.`;
+          descEl.style.textAlign = "left";
+          descEl.style.marginLeft = "30px";
+      }
 
+      if (data.profile_picture_div?.innerHTML === data.profile_picture_div_b) {
+          if (data.desc) data.desc.style.display = "none";
+          if (data.achievements) data.achievements.style.display = "block";
+          if (data.profile_picture_div) {
+              data.profile_picture_div.style.display = "flex";
+              data.profile_picture_div.innerHTML += `
+                  <div style="margin-left: 20px; font-size: ${fontSize}px; display: flex; width: 100%;">${displayName}</div>
+              `;
+          }
+      }
+  });
 
-document.getElementById('martin_profile').addEventListener('mouseenter', function() {
-  if (martin_profile_picture_div.innerHTML == martin_profile_picture_div_b){
-    martin_desc.style.display = "none";
-    martin_achievements.style.display = "block";
-    this.querySelector('.description p').display = "none";
-    martin_profile_picture_div.style.display = "flex";
-    martin_profile_picture_div.innerHTML += `
-      <div style="margin-left: 20px; font-size: 45px; display: flex; width: 100%;">Martin Mózes</div>
-    `;
-  }
-});
-document.getElementById('martin_profile').addEventListener('mouseleave', function() {
-  martin_desc.style.display = "block";
-  martin_achievements.style.display = "none";
-  this.querySelector('.description p').textContent = martin_desc_original;
-  martin_profile_picture_div.innerHTML = martin_profile_picture_div_b;
-  this.querySelector('.description p').style = martin_desc_style
-});
+  data.profile.addEventListener('mouseleave', function () {
+      if (data.desc) data.desc.style.display = "block";
+      if (data.achievements) data.achievements.style.display = "none";
+      if (data.profile_picture_div) data.profile_picture_div.innerHTML = data.profile_picture_div_b;
 
-document.getElementById('csonor_profile').addEventListener('mouseenter', function() {
-  if (csonor_profile_picture_div.innerHTML == csonor_profile_picture_div_b){
-    csonor_desc.style.display = "none";
-    csonor_achievements.style.display = "block";
-    this.querySelector('.description p').display = "none";
-    csonor_profile_picture_div.style.display = "flex";
-    csonor_profile_picture_div.innerHTML += `
-      <div style="margin-left: 20px; font-size: 45px; display: flex; width: 80%;">Csongor Dobák</div>
-    `;
-  }
-});
-document.getElementById('csonor_profile').addEventListener('mouseleave', function() {
-  csonor_desc.style.display = "block";
-  csonor_achievements.style.display = "none";
-  this.querySelector('.description p').textContent = csonor_desc_original;
-  csonor_profile_picture_div.innerHTML = csonor_profile_picture_div_b;
-  this.querySelector('.description p').style = csonor_desc_style
-});
+      const descEl = getQuerySelector(data.profile, ".description p");
+      if (descEl) {
+          descEl.textContent = data.desc_original;
+          Object.assign(descEl.style, data.desc_style); // Restore original styles
+      }
+  });
+}
 
-// JavaScript to add staggered delay dynamically
-document.querySelectorAll("#martin_achievements li").forEach((item, index) => {
-  item.style.animationDelay = `${index * 0.1}s`;
-});
+// Apply hover effects to profiles
+setupProfileHover("mark", "Márk Nagy", 50);
+setupProfileHover("martin", "Martin Mózes", 45);
+setupProfileHover("csonor", "Csongor Dobák", 45);
 
-// JavaScript to add staggered delay dynamically
-document.querySelectorAll("#mark_achievements li").forEach((item, index) => {
-  item.style.animationDelay = `${index * 0.1}s`;
-});
-
-// JavaScript to add staggered delay dynamically
-document.querySelectorAll("#csonor_achievements li").forEach((item, index) => {
-  item.style.animationDelay = `${index * 0.1}s`;
+// Add staggered animation delays
+profiles.forEach(name => {
+  document.querySelectorAll(`#${name}_achievements li`).forEach((item, index) => {
+      item.style.animationDelay = `${index * 0.1}s`;
+  });
 });
