@@ -2,7 +2,7 @@ let allLocations = [];
 
 async function loadLocations() {
     try {
-        const response = await fetch('utilities/retrieve_visited_locations.php');
+        const response = await fetch('../utilities/retrieve_visited_locations.php');
         const locations = await response.json();
         return locations;
     } catch (error) {

@@ -1,102 +1,68 @@
-const express = require('express');
-const session = require('express-session');
-const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
-const mysql = require('mysql2/promise');
+<?php
+require_once 'Auth.php';
+$auth = new Auth();
 
-const app = express();
-const port = 3000;
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({
-    secret: 'your_secret_key',
-    resave: false,
-    saveUninitialized: true
-}));
-
-// Database connection parameters
-const dbConfig = {
-    host: '127.0.0.1',
-    user: 'urbex',
-    password: 'PZRUrbexsql',
-    database: 'pzr_urbex'
-};
-
-// Hash function
-async function calculateHash(input) {
-    const saltRounds = 10;
-    return await bcrypt.hash(input, saltRounds);
+if ($auth->isAuthenticated()) {
+	header("Location: /urbex/home.php");
+    exit;
 }
 
-async function loginWithHash(conn, inputUsername, inputPassword) {
-    const [rows] = await conn.execute('SELECT * FROM users WHERE username = ?', [inputUsername]);
-    if (rows.length > 0) {
-        const user = rows[0];
-        const match = await bcrypt.compare(inputPassword, user.password);
-        if (match) {
-            return user;
-        }
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
+
+    if ($auth->login($username, $password)) {
+        header("Location: /urbex/home.php"); // Redirect to a protected page
+        exit;
+    } else {
+        $_SESSION['failed_login'] = true;
     }
-    return null;
+} elseif($_SERVER['REQUEST_METHOD'] === 'GET' && $auth->isAuthenticated()){
+	header("Location: /urbex/home.php");
+	exit;
 }
 
-app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
-    let conn;
 
-    try {
-        conn = await mysql.createConnection(dbConfig);
-        const user = await loginWithHash(conn, username, password);
-        if (user) {
-            req.session.authenticated = true;
-            req.session.username = username;
-            res.redirect('/locations');
-        } else {
-            res.send('Invalid username or password.');
-        }
-    } catch (err) {
-        res.status(500).send('Database connection failed: ' + err.message);
-    } finally {
-        if (conn) conn.end();
-    }
-});
+?>
 
-app.get('/', (req, res) => {
-    res.send(`
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Urbex Login</title>
-            <link rel="stylesheet" href="styles/index.css" media="screen and (min-device-width: 767px)">
-            <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 767px)" href="styles/mobile/index_mobile.css"/>
-        </head>
-        <body>
-            <div class="container">
-                <div class="login-container">
-                    <h2>PZR Urbex Portal</h2>
-                    <form id="login-form" method="post" action="/login">
-                        <div class="input-group">
-                            <label for="username">Username</label>
-                            <input type="text" id="username" name="username" required>
-                        </div>
-                        <div class="input-group">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" name="password" required>
-                        </div>
-                        <button type="submit" name="login">Login</button>
-                    </form><br>
-                    <form action="register.php">
-                        <button type="submit">Create new account</button>
-                    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urbex Login</title>
+
+    <!-- Desktop style -->
+    <link rel="stylesheet" href="../styles/index.css" media="screen and (min-device-width: 767px)">
+
+    <!-- Mobile style -->
+    <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 767px)" href="../styles/mobile/index_mobile.css"/>
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <h2>PZR Urbex Portal</h2>
+            <form id="login-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8'); ?>">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
                 </div>
-            </div>
-        </body>
-        </html>
-    `);
-});
-
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}/`);
-});
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <!-- Failed login attempt -->
+                <?php if (!empty($errorMessage)): ?>
+                    <div class="error-message">
+                        <?php echo $errorMessage; ?>
+                    </div>
+                <?php endif; ?>
+                <button type="submit" name="login">Login</button>
+            </form><br>
+            <form action="register.php">
+                <button type="submit">Create new account</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
