@@ -1,3 +1,16 @@
+<?php
+// ---- AUTH START -----
+require_once 'Auth.php';
+$auth = new Auth();
+
+if (!$auth->isAuthenticated()) {
+    header("Location: /urbex/public/index.php");
+    exit;
+}
+
+// ---- AUTH END -----
+?>
+
 <!DOCTYPE html>
 <html>
     <head>

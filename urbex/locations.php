@@ -1,11 +1,14 @@
 <?php
-session_start();
-// Still not authenticated = return to login.php
-if (!isset($_SESSION['authenticated']) || !$_SESSION['authenticated']) {
-    header('Location: index.php');
-    exit();
+// ---- AUTH START -----
+require_once 'Auth.php';
+$auth = new Auth();
+
+if (!$auth->isAuthenticated()) {
+    header("Location: /urbex/public/index.php");
+    exit;
 }
 
+// ---- AUTH END -----
 ?>
 
 <!DOCTYPE html>

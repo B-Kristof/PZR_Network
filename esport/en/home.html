@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -57,7 +58,7 @@
 
         <div class="vertical_first_container">
             <div class="welcome">
-              
+
               <!-- text with animation -->
               <p class="first_line">WELCOME TO</p>
               <p class="garde-text">PZR ESPORT<br>TEAM</p>
@@ -75,7 +76,7 @@
         </div>
       </div>
     </section>
-    
+
     <section id="about">
       <div class="vertical_second">
         <div class="about">
@@ -89,11 +90,10 @@
     <section id="gallery">
       <div class="vertical_third">
         <div class="top_video_mask"></div>
-        <iframe 
-          src="https://www.youtube.com/embed/jhZqsL1HQgI?autoplay=1&controls=0&disablekb=1&loop=1&version=3&mute=1&playlist=jhZqsL1HQgI&hd=1&vq=hd720p" 
-          frameborder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen">
-        </iframe>
+        <video class="preview_video" autoplay muted loop playsinline>
+          <source src="/esport/images/videos/pzr_in_race_video.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
         <div class="bottom_video_mask"></div>
         </div>
       </div>
@@ -101,7 +101,7 @@
 
     <section id="members">
       <div class="vertical_fourth">
-        
+
         <div class="profile-container">
             <div class="martin_profile" id="martin_profile" onclick="toggleProfile(this, 'martin')">
               <div class="single-profile-container" id="martin_inner_profile">
@@ -239,7 +239,7 @@
             <p>Email: pzrteamofficial@gmail.com</p>
             <h1>Stay up to date</h1>
             <p>Follow us on our social media pages</p>
-            <div class="social-media-container"> 
+            <div class="social-media-container">
               <a href="utilities/redirecthandler.php?src=pzrteam.hu/esport/en/home.html&dst=https://www.instagram.com/pzrteamofficial/"><img src="../images/contacts/icons8-instagram-48.png"/></a>
               <a href="utilities/redirecthandler.php?src=pzrteam.hu/esport/en/home.html&dst=https://www.youtube.com/@pzrteamofficial"><img src="../images/contacts/icons8-youtube-48.png"/></a>
               <a href="utilities/redirecthandler.php?src=pzrteam.hu/esport/en/home.html&dst=https://www.twitch.tv/pzrteam"><img src="../images/contacts/twitch-tv-48.png"/></a>
@@ -258,11 +258,11 @@
     if (screen.width > 767) {
       const script = document.createElement('script');
       script.src = '../js/dynamic_profiles.js';
-      document.head.appendChild(script); 
+      document.head.appendChild(script);
     } else {
       const script = document.createElement('script');
       script.src = '../js/mobile/dynamic_profiles_mobile.js';
-      document.head.appendChild(script); 
+      document.head.appendChild(script);
     }
   </script>
   <script src="../js/home.js"></script>
@@ -274,7 +274,7 @@
 
   <script src="https://embed.twitch.tv/embed/v1.js"></script>
 
-  
+
   <script type="text/javascript">
     new Twitch.Embed("twitch-embed", {
       width: 854,
