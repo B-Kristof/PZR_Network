@@ -38,6 +38,14 @@ class Webserver:
         self.conn = None  # False if offline
         self.sftp_con = None  # False if offline
         self.deployment_files = None
+        self.to_deploy = None
+
+    def __str__(self):
+        attributes = ""
+        for attr in self.__dict__:
+            attributes += f"{attr}: {getattr(self, attr)}\n"
+
+        return attributes
 
     def connect(self):
         """

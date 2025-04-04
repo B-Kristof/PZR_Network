@@ -19,6 +19,22 @@ def download_file_sftp(webserver: Webserver, remote_file, local_file):
         fatal_handler = FatalErrorHandler.FatalError(e, f"Fatal error while downloading {remote_file}!")
         fatal_handler.display_error()
 
+def upload_folder(webserver: Webserver, remote_folder: str, local_folder: str):
+    """
+    Uploads a folder to a remote SFTP server.
+    :param webserver: Webserver instance.
+    :param local_folder: Path to the local folder to upload.
+    :param remote_folder: Path to the remote folder where the files will be uploaded.
+    """
+    try:
+        logging.debug(f"Uploading {local_folder} to {remote_folder}...")
+        webserver.sftp_con.put(local_folder, remote_folder)
+        logging.debug("Upload complete.")
+    except Exception as e:
+        fatal_handler = FatalErrorHandler.FatalError(e, f"Fatal error while uploading {local_folder}!")
+        fatal_handler.display_error()
+
+
 
 def local_file_mapper(local_project_root: str):
     files = []

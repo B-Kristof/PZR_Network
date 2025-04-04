@@ -30,7 +30,7 @@ def compress_folder(webserver: Webserver):
     try:
         logging.debug(f"Compressing webserver folder ({webserver.webserver_folder}) on server side...")
         compress_command = (
-            f"tar -cvf"
+            f"sudo tar -cvf"
             f" {webserver.remote_backup_path} "
             f"{webserver.webserver_folder}"
         )

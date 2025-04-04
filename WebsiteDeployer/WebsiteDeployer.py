@@ -23,9 +23,11 @@ if __name__ == "__main__":
 
         config = loader.load_configs()
         config.webserver[0].connect()
-        config.webserver[0].map_files()
-        print(config.webserver[0].deployment_files)
+        config.webserver[0].extend_to_sftp()
+        # config.webserver[0].map_files()
+        # config.webserver[0].deploy_files()
 
+        create_backup(webserver=config.webserver[0])
 
     except KeyboardInterrupt as kbi_exception:
         kbi_handler = KeyboardInterruptHandler(kbi_exception)
