@@ -1,6 +1,6 @@
 from cryptography.fernet import Fernet
 import logging
-from ErrorHandler import FatalErrorHandler
+from src.ErrorHandler import FatalErrorHandler
 
 
 def encrypt_file(input_file, output_file, encryption_key):

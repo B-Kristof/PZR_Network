@@ -1,20 +1,20 @@
 import logging
-from ConfigLoader import Config
+from src.Models.Webserver import Webserver
 
 
-def cleanup(config: Config or None):
+def cleanup(webservers: list[Webserver]):
     """
     Close SSH and SFTP connection and hang the program until user input
-    :param config: Config instance
+    :param webservers: webserver instances
     """
     logging.debug("Starting cleanup...")
-    if config:
-        for webserver in config.webserver:
+    if webservers:
+        for webserver in webservers:
             if webserver.conn:
                 webserver.conn.disconnect()
-                logging.debug(f"Disconnected from {webserver.ip_address} ({webserver.url})")
+                logging.debug(f"Disconnected from {webserver.url} ({webserver.ip_address})")
             else:
-                logging.debug(f"No connection with {webserver.ip_address} ({webserver.url})")
+                logging.debug(f"No connection with {webserver.url} ({webserver.ip_address})")
     else:
         logging.debug(f"No connection to close.")
 

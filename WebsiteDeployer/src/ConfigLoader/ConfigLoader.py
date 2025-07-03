@@ -1,13 +1,8 @@
 import logging
 import json
 import os
-from ErrorHandler import FatalErrorHandler
-
-
-class Config:
-    def __init__(self):
-        pass
-
+from src.ErrorHandler import FatalErrorHandler
+from src.Models.Config import Config
 
 class ConfigLoader:
     def __init__(self, config_files: list, classes_parse_to: list):
@@ -46,11 +41,12 @@ class ConfigLoader:
 class WebserverConfigLoader(ConfigLoader):
     def __init__(self, file_path: str, class_to_parse):
         super().__init__([file_path], [class_to_parse])  # Pass the file_path and class_to_parse
-        self.file_path = "config/webservers.json"
+        self.file_path = file_path
         self.class_to_parse = class_to_parse
 
     def load_config(self):
         try:
+            logging.debug("Loading webserver information...")
             json_data = load_json(self.file_path)
             if json_data is False:
                 logging.error(f"Failed to load JSON from {self.file_path}.")
@@ -58,7 +54,7 @@ class WebserverConfigLoader(ConfigLoader):
             servers = []
             for key in list(json_data.keys()):
                 servers.append(parse_to_instance(json_data[key], self.class_to_parse))
-
+            logging.debug(f"Webserver configuration loaded.")
             return servers
 
         except FileNotFoundError as fnf:
@@ -67,24 +63,22 @@ class WebserverConfigLoader(ConfigLoader):
             FatalErrorHandler.FatalError(e, f"Fatal error while loading {self.file_path} file").display_error()
 
 
-class DiscordBotConfigLoader(ConfigLoader):
+class ProgramConfigLoader(ConfigLoader):
     def __init__(self, file_path: str, class_to_parse):
         super().__init__([file_path], [class_to_parse])  # Pass the file_path and class_to_parse
-        self.file_path = "confif/discordbot.json"
+        self.file_path = file_path
         self.class_to_parse = class_to_parse
 
-    def load_config(self):
+    def load_program_config(self):
         try:
             json_data = load_json(self.file_path)
             if json_data is False:
                 logging.error(f"Failed to load JSON from {self.file_path}.")
-                raise FileNotFoundError()
-
-            return parse_to_instance(json_data, self.class_to_parse)
-
+                raise
+            instance = parse_to_instance(json_data, self.class_to_parse)
+            return instance
         except FileNotFoundError as fnf:
             FatalErrorHandler.FatalError(fnf, f"{self.file_path} file not found").display_error()
-
         except Exception as e:
             FatalErrorHandler.FatalError(e, f"Fatal error while loading {self.file_path} file").display_error()
 

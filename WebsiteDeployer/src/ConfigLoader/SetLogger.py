@@ -8,7 +8,6 @@ class LogSetter:
         self.log_buffer = []
 
     def setup_logging(self):
-
         logger = logging.getLogger()
         logger.setLevel(level=self.level)
 

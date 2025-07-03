@@ -1,5 +1,5 @@
-from ServerManager.SSHServer import SSHServerConnection
-from ErrorHandler import FatalErrorHandler, NonFatalErrorHandler
+from src.ServerManager.SSHServer import SSHServerConnection
+from src.ErrorHandler import FatalErrorHandler, NonFatalErrorHandler
 import paramiko
 import logging
 

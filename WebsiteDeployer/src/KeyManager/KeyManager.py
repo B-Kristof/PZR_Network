@@ -1,6 +1,6 @@
 import json
 from .Encrypter import *
-from ErrorHandler import FatalErrorHandler
+from src.ErrorHandler import FatalErrorHandler
 
 class KeyManager:
     def __init__(self, keystore_file, ssh_key_file):

@@ -1,8 +1,8 @@
 import logging
 import os
 from .SendCommand import execute_command
-from ErrorHandler import FatalErrorHandler
-from Models import Webserver
+from src.ErrorHandler import FatalErrorHandler
+from src.Models.Webserver import Webserver
 
 def download_file_sftp(webserver: Webserver, remote_file, local_file):
     """
